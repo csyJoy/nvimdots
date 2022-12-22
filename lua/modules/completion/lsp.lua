@@ -23,6 +23,7 @@ mason_lsp.setup({
 		"clangd",
 		"gopls",
 		"pyright",
+		"tsserver",
 	},
 })
 
@@ -208,6 +209,8 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 			capabilities = capabilities,
 			on_attach = custom_attach,
 		})
+	elseif server == "tsserver" then
+		nvim_lsp[server].setup()
 	end
 end
 

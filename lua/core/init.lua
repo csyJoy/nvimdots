@@ -76,7 +76,7 @@ local leader_map = function()
 end
 
 local neovide_config = function()
-	vim.api.nvim_set_option_value("guifont", "JetBrainsMono Nerd Font:h15", {})
+	vim.api.nvim_set_option_value("guifont", "FiraCode Nerd Font:h20", {})
 	vim.g.neovide_refresh_rate = 120
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 	vim.g.neovide_no_idle = true
@@ -128,7 +128,6 @@ local load_core = function()
 	require("keymap")
 	require("core.event")
 	pack.load_compile()
-
 	-- vim.api.nvim_command([[set background=light]])
 	vim.api.nvim_command([[colorscheme catppuccin]])
 end

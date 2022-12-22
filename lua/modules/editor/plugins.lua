@@ -62,6 +62,7 @@ editor["phaazon/hop.nvim"] = {
 	event = "BufReadPost",
 	config = conf.hop,
 }
+
 editor["karb94/neoscroll.nvim"] = {
 	opt = true,
 	event = "BufReadPost",
@@ -108,6 +109,7 @@ editor["rcarriga/nvim-dap-ui"] = {
 	after = "nvim-dap", -- Need to call setup after dap has been initialized.
 	config = conf.dapui,
 }
+editor["theHamsta/nvim-dap-virtual-text"] = {}
 editor["tpope/vim-fugitive"] = { opt = true, cmd = { "Git", "G" } }
 editor["famiu/bufdelete.nvim"] = {
 	opt = true,
