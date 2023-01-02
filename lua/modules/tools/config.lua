@@ -2,11 +2,12 @@ local config = {}
 
 function config.telescope()
 	vim.api.nvim_command([[packadd sqlite.lua]])
+	vim.api.nvim_command([[packadd project.nvim]])
 	vim.api.nvim_command([[packadd telescope-fzf-native.nvim]])
-	vim.api.nvim_command([[packadd telescope-project.nvim]])
 	vim.api.nvim_command([[packadd telescope-frecency.nvim]])
 	vim.api.nvim_command([[packadd telescope-zoxide]])
 	vim.api.nvim_command([[packadd telescope-live-grep-args.nvim]])
+	vim.api.nvim_command([[packadd telescope-undo.nvim]])
 
 	local icons = { ui = require("modules.ui.icons").get("ui", true) }
 	local telescope_actions = require("telescope.actions.set")
@@ -67,6 +68,23 @@ function config.telescope()
 					},
 				},
 			},
+			undo = {
+				side_by_side = true,
+				layout_config = {
+					preview_height = 0.8,
+				},
+				mappings = { -- this whole table is the default
+					i = {
+						-- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
+						-- you want to use the following actions. This means installing as a dependency of
+						-- telescope in it's `requirements` and loading this extension from there instead of
+						-- having the separate plugin definition as outlined above. See issue #6.
+						["<cr>"] = require("telescope-undo.actions").yank_additions,
+						["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+						["<C-cr>"] = require("telescope-undo.actions").restore,
+					},
+				},
+			},
 		},
 		pickers = {
 			buffers = fixfolds,
@@ -80,10 +98,25 @@ function config.telescope()
 
 	require("telescope").load_extension("notify")
 	require("telescope").load_extension("fzf")
-	require("telescope").load_extension("project")
+	require("telescope").load_extension("projects")
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("frecency")
 	require("telescope").load_extension("live_grep_args")
+	require("telescope").load_extension("undo")
+end
+
+function config.project()
+	require("project_nvim").setup({
+		manual_mode = false,
+		detection_methods = { "lsp", "pattern" },
+		patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+		ignore_lsp = { "efm", "copilot" },
+		exclude_dirs = {},
+		show_hidden = false,
+		silent_chdir = true,
+		scope_chdir = "global",
+		datapath = vim.fn.stdpath("data"),
+	})
 end
 
 function config.trouble()
@@ -192,8 +225,15 @@ function config.wilder()
 		),
 	})
 
+	local string_fg = vim.api.nvim_get_hl_by_name("String", true).foreground
+	local match_hl = string_fg ~= nil and string.format("#%06x", string_fg) or "#ABE9B3"
+
 	local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
 		border = "rounded",
+		highlights = {
+			border = "Title", -- highlight to use for the border
+			accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 0 }, { a = 0 }, { foreground = match_hl } }),
+		},
 		empty_message = wilder.popupmenu_empty_message_with_spinner(),
 		highlighter = wilder.lua_fzy_highlighter(),
 		left = {
@@ -269,6 +309,23 @@ function config.legendary()
 			results_view = "float",
 			keep_contents = true,
 		},
+		sort = {
+			-- sort most recently used item to the top
+			most_recent_first = true,
+			-- sort user-defined items before built-in items
+			user_items_first = true,
+			frecency = {
+				-- the directory to store the database in
+				db_root = string.format("%s/legendary/", vim.fn.stdpath("data")),
+				-- the maximum number of timestamps for a single item
+				-- to store in the database
+				max_timestamps = 10,
+			},
+		},
+		-- Directory used for caches
+		cache_path = string.format("%s/legendary/", vim.fn.stdpath("cache")),
+		-- Log level, one of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
+		log_level = "info",
 	})
 
 	require("which-key").register({
@@ -300,6 +357,7 @@ function config.legendary()
 				f = "find: File under current work directory",
 				g = "find: File under current git directory",
 				n = "edit: New file",
+				b = "find: Buffer opened",
 			},
 			h = {
 				name = "Gitsigns commands",
@@ -335,31 +393,34 @@ function config.legendary()
 			},
 			t = {
 				name = "Trouble commands",
-				d = "lsp: show document diagnostics",
-				w = "lsp: show workspace diagnostics",
-				q = "lsp: show quickfix list",
-				l = "lsp: show loclist",
+				d = "lsp: Show document diagnostics",
+				w = "lsp: Show workspace diagnostics",
+				q = "lsp: Show quickfix list",
+				l = "lsp: Show loclist",
 			},
 		},
 		["g"] = {
-			c = "lsp: Code action",
+			a = "lsp: Code action",
 			d = "lsp: Preview definition",
 			D = "lsp: Goto definition",
 			h = "lsp: Show reference",
+			o = "lsp: Toggle outline",
 			r = "lsp: Rename",
 			s = "lsp: Signature help",
 			t = "lsp: Toggle trouble list",
 			b = "buffer: Buffer pick",
 			p = {
 				name = "git commands",
-				s = "git: push",
-				l = "git: pull",
+				s = "git: Push",
+				l = "git: Pull",
 			},
 		},
 		["<leader>G"] = "git: Show fugitive",
 		["<leader>g"] = "git: Show lazygit",
 		["<leader>D"] = "git: Show diff",
 		["<leader><leader>D"] = "git: Close diff",
+		["]g"] = "git: Goto next hunk",
+		["[g"] = "git: Goto prev hunk",
 		["g["] = "lsp: Goto prev diagnostic",
 		["g]"] = "lsp: Goto next diagnostic",
 		["<leader>w"] = "jump: Goto word",
@@ -368,6 +429,9 @@ function config.legendary()
 		["<leader>c"] = "jump: Goto one char",
 		["<leader>cc"] = "jump: Goto two chars",
 		["<leader>o"] = "edit: Check spell",
+		["<leader>u"] = "edit: Show undo history",
+		["<leader>r"] = "tool: Code snip run",
+		["<F12>"] = "tool: Markdown preview",
 	})
 end
 
