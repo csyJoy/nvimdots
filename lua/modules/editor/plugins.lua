@@ -109,7 +109,9 @@ editor["rcarriga/nvim-dap-ui"] = {
 	after = "nvim-dap", -- Need to call setup after dap has been initialized.
 	config = conf.dapui,
 }
-editor["theHamsta/nvim-dap-virtual-text"] = {}
+editor["theHamsta/nvim-dap-virtual-text"] = {
+	config = conf.virtualtext,
+}
 editor["tpope/vim-fugitive"] = { opt = true, cmd = { "Git", "G" } }
 editor["famiu/bufdelete.nvim"] = {
 	opt = true,
