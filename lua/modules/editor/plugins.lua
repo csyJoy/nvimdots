@@ -62,6 +62,9 @@ editor["phaazon/hop.nvim"] = {
 	event = "BufReadPost",
 	config = conf.hop,
 }
+editor["ggandor/leap.nvim"] = {
+	config = conf.leap,
+}
 
 editor["karb94/neoscroll.nvim"] = {
 	opt = true,

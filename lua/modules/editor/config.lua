@@ -552,4 +552,6 @@ function config.virtualtext()
 	})
 end
 
+function config.leap() end
+
 return config
