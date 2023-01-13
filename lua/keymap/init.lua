@@ -104,6 +104,8 @@ local plug_map = {
 	-- ["n|<leader>cc"] = map_cu("HopChar2"):with_noremap(),
 	["n|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap(),
 	["n|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap(),
+	["v|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap(),
+	["v|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap(),
 	-- Plugin EasyAlign
 	--["n|gea"] = map_cmd("v:lua.enhance_align('nea')"):with_expr(),
 	--["x|gea"] = map_cmd("v:lua.enhance_align('xea')"):with_expr(),

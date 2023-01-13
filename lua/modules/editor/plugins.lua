@@ -56,12 +56,12 @@ editor["romainl/vim-cool"] = {
 	opt = true,
 	event = { "CursorMoved", "InsertEnter" },
 }
-editor["phaazon/hop.nvim"] = {
-	opt = true,
-	branch = "v2",
-	event = "BufReadPost",
-	config = conf.hop,
-}
+-- editor["phaazon/hop.nvim"] = {
+-- 	opt = true,
+-- 	branch = "v2",
+-- 	event = "BufReadPost",
+-- 	config = conf.hop,
+-- }
 editor["ggandor/leap.nvim"] = {
 	config = conf.leap,
 }
