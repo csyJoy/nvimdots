@@ -99,17 +99,11 @@ function config.lspsaga()
 			virtual_text = true,
 		},
 		symbol_in_winbar = {
+			in_custom = true,
 			enable = true,
-			in_custom = false,
 			separator = " " .. icons.ui.Separator,
 			show_file = false,
-			-- define how to customize filename, eg: %:., %
-			-- if not set, use default value `%:t`
-			-- more information see `vim.fn.expand` or `expand`
-			-- ## only valid after set `show_file = true`
-			file_formatter = "",
 			click_support = function(node, clicks, button, modifiers)
-				-- To see all avaiable details: vim.pretty_print(node)
 				local st = node.range.start
 				local en = node.range["end"]
 				if button == "l" then
@@ -120,8 +114,8 @@ function config.lspsaga()
 					end
 				elseif button == "r" then
 					if modifiers == "s" then
-						print("lspsaga") -- shift right click to print "lspsaga"
-					end -- jump to node's ending line+char
+						print("symbol_winbar")
+					end
 					vim.fn.cursor(en.line + 1, en.character + 1)
 				elseif button == "m" then
 					-- middle click to visual select node
@@ -354,6 +348,18 @@ end
 function config.copilot()
 	vim.defer_fn(function()
 		require("copilot").setup({
+			cmp = {
+				enabled = true,
+				method = "getCompletionsCycling",
+			},
+			panel = {
+				-- if true, it can interfere with completions in copilot-cmp
+				enabled = false,
+			},
+			suggestion = {
+				-- if true, it can interfere with completions in copilot-cmp
+				enabled = false,
+			},
 			filetypes = {
 				["dap-repl"] = false,
 			},

@@ -225,8 +225,7 @@ function config.wilder()
 		),
 	})
 
-	local string_fg = vim.api.nvim_get_hl_by_name("String", true).foreground
-	local match_hl = string_fg ~= nil and string.format("#%06x", string_fg) or "#ABE9B3"
+	local match_hl = require("modules.utils").hl_to_rgb("String", false, "#ABE9B3")
 
 	local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
 		border = "rounded",
@@ -335,16 +334,12 @@ function config.legendary()
 				d = "buffer: Sort by directory",
 				e = "buffer: Sort by extension",
 			},
-
 			d = {
 				name = "Dap commands",
-				b = "debug: Toggle breakpoint",
-				d = "debug: Terminate debug session",
-				r = "debug: Continue",
-				l = "debug: Open repl",
-				i = "debug: Step in",
-				o = "debug: Step out",
-				v = "debug: Step over",
+				b = "debug: Set breakpoint with condition",
+				c = "debug: Run to cursor",
+				l = "debug: Run last",
+				o = "debug: Open repl",
 			},
 			f = {
 				name = "Telescope commands",
@@ -415,6 +410,12 @@ function config.legendary()
 				l = "git: Pull",
 			},
 		},
+		["<F6>"] = "debug: Run/Continue",
+		["<F7>"] = "debug: Terminate debug session",
+		["<F8>"] = "debug: Toggle breakpoint",
+		["<F9>"] = "debug: Step into",
+		["<F10>"] = "debug: Step out",
+		["<F11>"] = "debug: Step over",
 		["<leader>G"] = "git: Show fugitive",
 		["<leader>g"] = "git: Show lazygit",
 		["<leader>D"] = "git: Show diff",
