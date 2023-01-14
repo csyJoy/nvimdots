@@ -60,8 +60,8 @@ local plug_map = {
 	["n|<leader>ft"] = map_cr([[execute v:count . "ToggleTerm direction=float"]]):with_noremap():with_silent(),
 	--["i|<leader>ft"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>"):with_noremap():with_silent(),
 	["t|<leader>ft"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>"):with_noremap():with_silent(),
-	-- ["n|<leader>g"] = map_cr("lua toggle_lazygit()"):with_noremap():with_silent(),
-	-- ["t|<leader>g"] = map_cmd("<Esc><Cmd>lua toggle_lazygit()<CR>"):with_noremap():with_silent(),
+	["n|<leader>gi"] = map_cr("lua toggle_lazygit()"):with_noremap():with_silent(),
+	["t|<leader>gi"] = map_cmd("<Esc><Cmd>lua toggle_lazygit()<CR>"):with_noremap():with_silent(),
 	["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent(),
 	-- Plugin trouble
 	["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
