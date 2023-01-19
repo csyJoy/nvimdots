@@ -91,11 +91,12 @@ local plug_map = {
 		:with_silent(),
 	["n|<leader>fe"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
 	["n|<leader>ff"] = map_cu("Telescope find_files"):with_noremap():with_silent(),
-	["n|<leader>fc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent(),
+	-- ["n|<leader>fc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent(),
 	["n|<leader>fn"] = map_cu(":enew"):with_noremap():with_silent(),
 	["n|<leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
 	["n|<leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent(),
 	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
+	["n|<leader>fc"] = map_cu("TodoTelescope"):with_noremap():with_silent(),
 	-- Plugin accelerate-jk
 	["n|j"] = map_cmd("v:lua.enhance_jk_move('j')"):with_silent():with_expr(),
 	["n|k"] = map_cmd("v:lua.enhance_jk_move('k')"):with_silent():with_expr(),

@@ -74,5 +74,9 @@ ui["j-hui/fidget.nvim"] = {
 	event = "BufReadPost",
 	config = conf.fidget,
 }
+ui["folke/todo-comments.nvim"] = {
+	requires = "nvim-lua/plenary.nvim",
+	config = conf.todo_comments,
+}
 
 return ui

@@ -983,4 +983,8 @@ function config.fidget()
 	})
 end
 
+function config.todo_comments()
+	require("todo-comments").setup({})
+end
+
 return config
