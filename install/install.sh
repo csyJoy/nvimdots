@@ -179,19 +179,19 @@ fi
 prompt "Fetching in progress..."
 if [ "$USE_SSH" -eq "1" ]; then
 	if is_latest; then
-		execute "git" "clone" "-b" "main" "git@github.com:ayamir/nvimdots.git" "${DEST_DIR}"
+		execute "git" "clone" "-b" "local" "git@github.com:csyJoy/nvimdots.git" "${DEST_DIR}"
 	else
 		warn "You have outdated Nvim installed (< ${REQUIRED_NVIM_VERSION})."
 		prompt "Automatically redirecting you to legacy version..."
-		execute "git" "clone" "-b" "0.7" "git@github.com:ayamir/nvimdots.git" "${DEST_DIR}"
+		execute "git" "clone" "-b" "local" "git@github.com:csyJoy/nvimdots.git" "${DEST_DIR}"
 	fi
 else
 	if is_latest; then
-		execute "git" "clone" "-b" "main" "https://github.com/ayamir/nvimdots.git" "${DEST_DIR}"
+		execute "git" "clone" "-b" "local" "git@github.com:csyJoy/nvimdots.git" "${DEST_DIR}"
 	else
 		warn "You have outdated Nvim installed (< ${REQUIRED_NVIM_VERSION})."
 		prompt "Automatically redirecting you to legacy version..."
-		execute "git" "clone" "-b" "0.7" "https://github.com/ayamir/nvimdots.git" "${DEST_DIR}"
+		execute "git" "clone" "-b" "local" "https://github.com/csyJoy/nvimdots.git" "${DEST_DIR}"
 	fi
 fi
 
