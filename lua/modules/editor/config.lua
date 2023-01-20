@@ -308,11 +308,16 @@ function config.dap()
 			type = "lldb",
 			request = "launch",
 			program = function()
-				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+				local binary_with_args =
+					vim.split(vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file"), " ")
+				local bin_path = binary_with_args[1]
+				table.remove(binary_with_args, 1)
+				vim.g.binary_args = binary_with_args
+				return bin_path
 			end,
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
-			args = {},
+			args = vim.g.binary_args,
 
 			-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
 			--
