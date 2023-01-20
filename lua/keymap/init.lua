@@ -129,9 +129,9 @@ local plug_map = {
 	["n|<leader>dr"] = map_cr("lua require('dap').continue()"):with_noremap():with_silent(),
 	["n|<leader>dd"] = map_cr("lua require('dap').terminate() require('dapui').close()"):with_noremap():with_silent(),
 	["n|<leader>db"] = map_cr("lua require('dap').toggle_breakpoint()"):with_noremap():with_silent(),
-	["n|<leader>di"] = map_cr("lua require('dap').step_into()"):with_noremap():with_silent(),
+	["n|<leader><tab>"] = map_cr("lua require('dap').step_into()"):with_noremap():with_silent(),
 	["n|<leader>do"] = map_cr("lua require('dap').step_out()"):with_noremap():with_silent(),
-	["n|<leader>dv"] = map_cr("lua require('dap').step_over()"):with_noremap():with_silent(),
+	["n|<tab>"] = map_cr("lua require('dap').step_over()"):with_noremap():with_silent(),
 	["n|<leader>dB"] = map_cr("lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))")
 		:with_noremap()
 		:with_silent(),
@@ -147,6 +147,11 @@ local plug_map = {
 	["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent():with_noremap(),
 	-- Plugin Legendary
 	["n|<C-p>"] = map_cr("Legendary"):with_silent():with_noremap(),
+
+	-- Plugin vimtex
+	["n|<leader>ls"] = map_cmd([[<Plug>(vimtex-view)]]):with_silent(),
+	["n|<leader>lc"] = map_cmd([[<Plug>(vimtex-compile)]]):with_silent(),
+	["n|<leader>lt"] = map_cmd([[<Plug>(vimtex-toc-open)]]):with_silent(),
 }
 
 bind.nvim_load_mapping(plug_map)
