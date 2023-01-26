@@ -82,6 +82,8 @@ function config.lspsaga()
 		rename = {
 			quit = "<C-c>",
 			exec = "<CR>",
+			mark = "x",
+			confirm = "<CR>",
 			in_select = true,
 		},
 		outline = {
@@ -104,6 +106,7 @@ function config.lspsaga()
 			separator = " " .. icons.ui.Separator,
 			hide_keyword = true,
 			show_file = false,
+			color_mode = true,
 		},
 		ui = {
 			theme = "round",
@@ -115,7 +118,7 @@ function config.lspsaga()
 			code_action = icons.ui.CodeAction,
 			diagnostic = icons.ui.Bug,
 			incoming = icons.ui.Incoming,
-			outgoing = icons.ui.Outcoming,
+			outgoing = icons.ui.Outgoing,
 			colors = {
 				normal_bg = colors.base,
 				title_bg = colors.base,
@@ -181,7 +184,6 @@ function config.cmp()
 		type = require("modules.ui.icons").get("type", false),
 		cmp = require("modules.ui.icons").get("cmp", false),
 	}
-	-- vim.api.nvim_command([[packadd cmp-tabnine]])
 	local t = function(str)
 		return vim.api.nvim_replace_termcodes(str, true, true, true)
 	end
@@ -271,8 +273,6 @@ function config.cmp()
 					cmp.select_next_item()
 				elseif require("luasnip").expand_or_jumpable() then
 					vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
-				elseif has_words_before() then
-					cmp.complete()
 				else
 					fallback()
 				end

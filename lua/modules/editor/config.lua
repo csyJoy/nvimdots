@@ -31,7 +31,7 @@ function config.nvim_treesitter()
 		highlight = {
 			enable = true,
 			disable = { "vim" },
-			additional_vim_regex_highlighting = false,
+			additional_vim_regex_highlighting = { "c", "cpp" },
 		},
 		textobjects = {
 			select = {
@@ -264,7 +264,6 @@ end
 function config.dap()
 	local icons = { dap = require("modules.ui.icons").get("dap") }
 
-	vim.api.nvim_command([[packadd nvim-dap-ui]])
 	local dap = require("dap")
 	dap.set_log_level("DEBUG")
 	local dapui = require("dapui")
@@ -436,26 +435,6 @@ function config.specs()
 	})
 end
 
-function config.tabout()
-	require("tabout").setup({
-		tabkey = "<A-l>",
-		backwards_tabkey = "<A-h>",
-		ignore_beginning = false,
-		act_as_tab = true,
-		enable_backward = true,
-		completion = true,
-		tabouts = {
-			{ open = "'", close = "'" },
-			{ open = '"', close = '"' },
-			{ open = "`", close = "`" },
-			{ open = "(", close = ")" },
-			{ open = "[", close = "]" },
-			{ open = "{", close = "}" },
-		},
-		exclude = {},
-	})
-end
-
 function config.imselect()
 	-- fcitx5 need a manual config
 	if vim.fn.executable("fcitx5-remote") == 1 then
@@ -536,26 +515,25 @@ function config.smartyank()
 	})
 end
 
-function config.virtualtext()
-	require("nvim-dap-virtual-text").setup({
-		enabled = true, -- enable this plugin (the default)
-		enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
-		highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-		highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
-		show_stop_reason = true, -- show stop reason when stopped for exceptions
-		commented = false, -- prefix virtual text with comment string
-		only_first_definition = true, -- only show virtual text at first definition (if there are multiple)
-		all_references = false, -- show virtual text on all all references of the variable (not only definitions)
-		filter_references_pattern = "<module", -- filter references (not definitions) pattern when all_references is activated (Lua gmatch pattern, default filters out Python modules)
-		-- experimental features:
-		virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
-		all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-		virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
-		virt_text_win_col = nil, -- position the virtual text at a fixed window column (starting from the first text column) ,
-		-- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+function config.tabout()
+	require("tabout").setup({
+		tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+		backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+		act_as_tab = true, -- shift content if tab out is not possible
+		act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+		enable_backwards = true,
+		completion = true, -- if the tabkey is used in a completion pum
+		tabouts = {
+			{ open = "'", close = "'" },
+			{ open = '"', close = '"' },
+			{ open = "`", close = "`" },
+			{ open = "(", close = ")" },
+			{ open = "[", close = "]" },
+			{ open = "{", close = "}" },
+		},
+		ignore_beginning = true, -- if the cursor is at the beginning of a filled element it will rather tab out than shift the content
+		exclude = {}, -- tabout will ignore these filetypes
 	})
 end
-
-function config.leap() end
 
 return config

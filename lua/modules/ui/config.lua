@@ -82,7 +82,8 @@ function config.alpha()
 	dashboard.section.buttons.opts.hl = "String"
 
 	local function footer()
-		local total_plugins = #vim.tbl_keys(packer_plugins)
+		local stats = require("lazy").stats()
+		local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 		return "   Have Fun with neovim"
 			.. "   v"
 			.. vim.version().major
@@ -91,8 +92,10 @@ function config.alpha()
 			.. "."
 			.. vim.version().patch
 			.. "   "
-			.. total_plugins
-			.. " plugins"
+			.. stats.count
+			.. " plugins in "
+			.. ms
+			.. "ms"
 	end
 
 	dashboard.section.footer.val = footer()
@@ -113,6 +116,14 @@ function config.alpha()
 	}
 
 	alpha.setup(dashboard.opts)
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "LazyVimStarted",
+		callback = function()
+			dashboard.section.footer.val = footer()
+			pcall(vim.cmd.AlphaRedraw)
+		end,
+	})
 end
 
 function config.edge()
@@ -147,6 +158,7 @@ function config.catppuccin()
 			percentage = 0.15,
 		},
 		transparent_background = transparent_background,
+		show_end_of_buffer = false, -- show the '~' characters after the end of buffers
 		term_colors = true,
 		compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 		styles = {
@@ -253,6 +265,12 @@ function config.catppuccin()
 			},
 		},
 		highlight_overrides = {
+			all = function(cp)
+				return {
+					-- For lspsaga.nvim
+					SagaBeacon = { bg = cp.surface0 },
+				}
+			end,
 			mocha = function(cp)
 				return {
 					-- For base configs.
@@ -379,7 +397,6 @@ function config.catppuccin()
 end
 
 function config.neodim()
-	vim.api.nvim_command([[packadd nvim-treesitter]])
 	local blend_color = require("modules.utils").hl_to_rgb("Normal", true)
 
 	require("neodim").setup({
@@ -595,10 +612,10 @@ function config.lualine()
 
 	-- Properly set background color for lspsaga
 	local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, "#000000")
-	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
 	for _, hlGroup in pairs(require("lspsaga.highlight").get_kind()) do
 		require("modules.utils").extend_hl("LspSagaWinbar" .. hlGroup[1], { bg = winbar_bg })
 	end
+	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
 end
 
 function config.nvim_tree()
@@ -608,7 +625,6 @@ function config.nvim_tree()
 		git = require("modules.ui.icons").get("git"),
 		ui = require("modules.ui.icons").get("ui"),
 	}
-	vim.api.nvim_command([[packadd nvim-window-picker]])
 
 	require("nvim-tree").setup({
 		create_in_closed_folder = false,
