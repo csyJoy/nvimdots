@@ -95,6 +95,7 @@ editor["tpope/vim-fugitive"] = {
 	cmd = { "Git", "G" },
 }
 editor["theHamsta/nvim-dap-virtual-text"] = {
+	lazy = false,
 	config = conf.virtualtext,
 }
 editor["tpope/vim-fugitive"] = { opt = true, cmd = { "Git", "G" } }
