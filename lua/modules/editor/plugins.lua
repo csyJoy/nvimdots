@@ -129,4 +129,9 @@ editor["ibhagwan/smartyank.nvim"] = {
 -- 	config = conf.imselect,
 -- }
 
+editor["kazhala/close-buffers.nvim"] = {
+	lazy = false,
+	config = conf.close_buffer,
+}
+
 return editor

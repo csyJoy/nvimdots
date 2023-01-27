@@ -6,7 +6,7 @@ require("keymap.config")
 
 local plug_map = {
 	-- bufdelete.nvim
-	["n|dq"] = map_cmd(":Bwipeout<CR>"),
+	["n|dq"] = map_cmd(":BWipeout this<CR>"),
 	-- Bufferline
 	["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
 	["n|<A-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
