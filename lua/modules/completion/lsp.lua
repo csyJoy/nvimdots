@@ -84,6 +84,26 @@ local function switch_source_header_splitcmd(bufnr, splitcmd)
 	end
 end
 
+local function get_absolute_path()
+	local path = vim.api.nvim_buf_get_name(0)
+	local path_list = vim.split(path, "/")
+	local count = 0
+	local build = "/build"
+	for _, _ in pairs(path_list) do
+		count = count + 1
+	end
+	local cnt = 1
+	while cnt < count - 1 do
+		local sub_path = table.concat(path_list, "/", 1, count - cnt)
+		local build_path = sub_path .. build
+		if vim.fn.isdirectory(build_path) ~= 0 then
+			return build_path
+		end
+		cnt = cnt + 1
+	end
+	return nil
+end
+
 -- Override server settings here
 
 for _, server in ipairs(mason_lsp.get_installed_servers()) do
@@ -135,13 +155,13 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 				"clangd",
 				"--background-index",
 				"--pch-storage=memory",
-				-- You MUST set this arg ↓ to your c/cpp compiler location (if not included)!
-				"--query-driver=/usr/bin/clang++,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+				-- You MUST set this arg ↓ to your c/cpp compiler location (if not included)! "--query-driver=/usr/bin/clang++,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
 				"--clang-tidy",
 				"--all-scopes-completion",
 				"--completion-style=detailed",
 				"--header-insertion-decorators",
 				"--header-insertion=iwyu",
+				"--compile-commands-dir=" .. get_absolute_path(),
 			},
 			commands = {
 				ClangdSwitchSourceHeader = {
