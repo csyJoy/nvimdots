@@ -84,7 +84,7 @@ local function switch_source_header_splitcmd(bufnr, splitcmd)
 	end
 end
 
-local function get_absolute_path()
+local function get_clangd_compile_command_path()
 	local path = vim.api.nvim_buf_get_name(0)
 	local path_list = vim.split(path, "/")
 	local count = 0
@@ -97,7 +97,7 @@ local function get_absolute_path()
 		local sub_path = table.concat(path_list, "/", 1, count - cnt)
 		local build_path = sub_path .. build
 		if vim.fn.isdirectory(build_path) ~= 0 then
-			return build_path
+			return "--compile-commands-dir=" .. build_path
 		end
 		cnt = cnt + 1
 	end
@@ -161,7 +161,7 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 				"--completion-style=detailed",
 				"--header-insertion-decorators",
 				"--header-insertion=iwyu",
-				"--compile-commands-dir=" .. get_absolute_path(),
+				get_clangd_compile_command_path(),
 			},
 			commands = {
 				ClangdSwitchSourceHeader = {
