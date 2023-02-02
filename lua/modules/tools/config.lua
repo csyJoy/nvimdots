@@ -2,18 +2,6 @@ local config = {}
 
 function config.telescope()
 	local icons = { ui = require("modules.ui.icons").get("ui", true) }
-	local telescope_actions = require("telescope.actions.set")
-	local fixfolds = {
-		hidden = true,
-		attach_mappings = function(_)
-			telescope_actions.select:enhance({
-				post = function()
-					vim.api.nvim_command([[:normal! zx"]])
-				end,
-			})
-			return true
-		end,
-	}
 	local lga_actions = require("telescope-live-grep-args.actions")
 
 	require("telescope").setup({
@@ -77,14 +65,6 @@ function config.telescope()
 					},
 				},
 			},
-		},
-		pickers = {
-			buffers = fixfolds,
-			find_files = fixfolds,
-			git_files = fixfolds,
-			grep_string = fixfolds,
-			live_grep = fixfolds,
-			oldfiles = fixfolds,
 		},
 	})
 
@@ -175,24 +155,29 @@ function config.sniprun()
 		interpreter_options = {}, -- " intepreter-specific options, consult docs / :SnipInfo <name>
 		-- " you can combo different display modes as desired
 		display = {
-			"Classic", -- "display results in the command-line  area
-			"VirtualTextOk", -- "display ok results as virtual text (multiline is shortened)
-			"VirtualTextErr", -- "display error results as virtual text
-			-- "TempFloatingWindow",      -- "display results in a floating window
-			"LongTempFloatingWindow", -- "same as above, but only long results. To use with VirtualText__
-			-- "Terminal"                 -- "display results in a vertical split
+			"TempFloatingWindowOk", -- display ok results in the floating window
+			"NvimNotifyErr", -- display err results with the nvim-notify plugin
+			-- "Classic", -- display results in the command line"
+			-- "VirtualText", -- display results in virtual text"
+			-- "LongTempFloatingWindow", -- display results in the long floating window
+			-- "Terminal" -- display results in a vertical split
+			-- "TerminalWithCode" -- display results and code history in a vertical split
+		},
+		display_options = {
+			terminal_width = 45,
+			notification_timeout = 5000,
 		},
 		-- " miscellaneous compatibility/adjustement settings
 		inline_messages = 0, -- " inline_message (0/1) is a one-line way to display messages
 		-- " to workaround sniprun not being able to display anything
-
-		borders = "shadow", -- " display borders around floating windows
+		borders = "single", -- " display borders around floating windows
 		-- " possible values are 'none', 'single', 'double', or 'shadow'
 	})
 end
 
 function config.wilder()
 	local wilder = require("wilder")
+	local colors = require("modules.utils").get_palette()
 	local icons = { ui = require("modules.ui.icons").get("ui") }
 
 	wilder.setup({ modes = { ":", "/", "?" } })
@@ -217,7 +202,7 @@ function config.wilder()
 		),
 	})
 
-	local match_hl = require("modules.utils").hl_to_rgb("String", false, "#ABE9B3")
+	local match_hl = require("modules.utils").hl_to_rgb("String", false, colors.green)
 
 	local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
 		border = "rounded",
@@ -391,6 +376,7 @@ function config.legendary()
 				w = "lsp: Show workspace diagnostics",
 				q = "lsp: Show quickfix list",
 				l = "lsp: Show loclist",
+				r = "lsp: Show lsp references",
 			},
 		},
 		["g"] = {
@@ -399,7 +385,8 @@ function config.legendary()
 			D = "lsp: Goto definition",
 			h = "lsp: Show reference",
 			o = "lsp: Toggle outline",
-			r = "lsp: Rename",
+			r = "lsp: Rename in file range",
+			R = "lsp: Rename in project range",
 			s = "lsp: Signature help",
 			t = "lsp: Toggle trouble list",
 			b = "buffer: Buffer pick",

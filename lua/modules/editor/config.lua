@@ -30,7 +30,14 @@ function config.nvim_treesitter()
 		},
 		highlight = {
 			enable = true,
-			disable = { "vim" },
+			disable = function(ft, bufnr)
+				if vim.tbl_contains({ "vim" }, ft) then
+					return true
+				end
+
+				local ok, is_large_file = pcall(vim.api.nvim_buf_get_var, bufnr, "bigfile_disable_treesitter")
+				return ok and is_large_file
+			end,
 			additional_vim_regex_highlighting = { "c", "cpp" },
 		},
 		textobjects = {
@@ -98,7 +105,6 @@ function config.illuminate()
 			"norg",
 			"NvimTree",
 			"Outline",
-			"packer",
 			"toggleterm",
 		},
 		under_cursor = false,
@@ -174,6 +180,9 @@ function config.auto_session()
 end
 
 function config.toggleterm()
+	local colors = require("modules.utils").get_palette()
+	local floatborder_hl = require("modules.utils").hl_to_rgb("FloatBorder", false, colors.blue)
+
 	require("toggleterm").setup({
 		-- size can be a number or function which is passed the current terminal
 		size = function(term)
@@ -183,6 +192,11 @@ function config.toggleterm()
 				return vim.o.columns * 0.40
 			end
 		end,
+		highlights = {
+			FloatBorder = {
+				guifg = floatborder_hl,
+			},
+		},
 		on_open = function()
 			-- Prevent infinite calls from freezing neovim.
 			-- Only set these options specific to this terminal buffer.
@@ -263,6 +277,7 @@ end
 
 function config.dap()
 	local icons = { dap = require("modules.ui.icons").get("dap") }
+	local colors = require("modules.utils").get_palette()
 
 	local dap = require("dap")
 	dap.set_log_level("DEBUG")
@@ -279,7 +294,7 @@ function config.dap()
 	end
 
 	-- We need to override nvim-dap's default highlight groups, AFTER requiring nvim-dap for catppuccin.
-	vim.api.nvim_set_hl(0, "DapStopped", { fg = "#ABE9B3" })
+	vim.api.nvim_set_hl(0, "DapStopped", { fg = colors.green })
 
 	vim.fn.sign_define(
 		"DapBreakpoint",
@@ -306,6 +321,10 @@ function config.dap()
 			name = "Launch",
 			type = "lldb",
 			request = "launch",
+			args = function()
+				local input = vim.fn.input("Input args: ")
+				return vim.fn.split(input, " ", true)
+			end,
 			program = function()
 				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 			end,
@@ -517,8 +536,8 @@ end
 
 function config.tabout()
 	require("tabout").setup({
-		tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
-		backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+		tabkey = "", -- key to trigger tabout, set to an empty string to disable
+		backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
 		act_as_tab = true, -- shift content if tab out is not possible
 		act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
 		enable_backwards = true,
@@ -572,6 +591,36 @@ function config.close_buffer()
 		file_regex_ignore = {}, -- File name regex pattern to ignore when running deletions (e.g. '.*[.]md')
 		preserve_window_layout = { "this", "nameless" }, -- Types of deletion that should preserve the window layout
 		next_buffer_cmd = nil, -- Custom function to retrieve the next buffer when preserving window layout
+function config.bigfile()
+	local ftdetect = {
+		name = "ftdetect",
+		opts = { defer = true },
+		disable = function()
+			vim.api.nvim_set_option_value("filetype", "big_file_disabled_ft", { scope = "local" })
+		end,
+	}
+
+	local cmp = {
+		name = "nvim-cmp",
+		opts = { defer = true },
+		disable = function()
+			require("cmp").setup.buffer({ enabled = false })
+		end,
+	}
+
+	require("bigfile").config({
+		filesize = 1, -- size of the file in MiB
+		pattern = { "*" }, -- autocmd pattern
+		features = { -- features to disable
+			"indent_blankline",
+			"lsp",
+			"illuminate",
+			"treesitter",
+			"syntax",
+			"vimopts",
+			ftdetect,
+			cmp,
+		},
 	})
 end
 
