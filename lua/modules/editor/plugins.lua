@@ -51,6 +51,11 @@ editor["phaazon/hop.nvim"] = {
 	event = "BufReadPost",
 	config = conf.hop,
 }
+editor["ggandor/leap.nvim"] = {
+	lazy = true,
+	event = "BufReadPost",
+	config = conf.leap,
+}
 
 editor["karb94/neoscroll.nvim"] = {
 	lazy = true,
@@ -88,16 +93,17 @@ editor["mfussenegger/nvim-dap"] = {
 	config = conf.dap,
 	dependencies = {
 		{ "rcarriga/nvim-dap-ui", config = conf.dapui },
+		{ "theHamsta/nvim-dap-virtual-text", config = conf.virtualtext },
 	},
 }
 editor["tpope/vim-fugitive"] = {
 	lazy = true,
 	cmd = { "Git", "G" },
 }
-editor["theHamsta/nvim-dap-virtual-text"] = {
-	lazy = false,
-	config = conf.virtualtext,
-}
+-- editor["theHamsta/nvim-dap-virtual-text"] = {
+-- 	lazy = true,
+-- 	config = conf.virtualtext,
+-- }
 editor["tpope/vim-fugitive"] = { opt = true, cmd = { "Git", "G" } }
 editor["ojroques/nvim-bufdel"] = {
 	lazy = true,

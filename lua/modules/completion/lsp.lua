@@ -161,7 +161,7 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 				"--completion-style=detailed",
 				"--header-insertion-decorators",
 				"--header-insertion=iwyu",
-				get_clangd_compile_command_path(),
+				-- get_clangd_compile_command_path(),
 			},
 			commands = {
 				ClangdSwitchSourceHeader = {

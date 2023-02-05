@@ -71,6 +71,7 @@ ui["j-hui/fidget.nvim"] = {
 	config = conf.fidget,
 }
 ui["folke/todo-comments.nvim"] = {
+	lazy = true,
 	requires = "nvim-lua/plenary.nvim",
 	config = conf.todo_comments,
 }
