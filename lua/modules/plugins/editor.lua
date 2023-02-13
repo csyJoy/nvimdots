@@ -48,6 +48,11 @@ editor["phaazon/hop.nvim"] = {
 	event = "BufReadPost",
 	config = require("editor.hop"),
 }
+editor["ggandor/leap.nvim"] = {
+	lazy = true,
+	event = "BufReadPost",
+	config = require("editor.leap"),
+}
 editor["RRethy/vim-illuminate"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
@@ -93,6 +98,11 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 			config = require("editor.tabout"),
 		},
 	},
+}
+
+editor["kazhala/close-buffers.nvim"] = {
+	lazy = true,
+	config = require("editor.close-buffers"),
 }
 
 return editor

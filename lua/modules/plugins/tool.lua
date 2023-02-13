@@ -112,6 +112,10 @@ tool["mfussenegger/nvim-dap"] = {
 			"rcarriga/nvim-dap-ui",
 			config = require("tool.dap.dapui"),
 		},
+		{
+			"theHamsta/nvim-dap-virtual-text",
+			config = require("tool.dap.virtual-text"),
+		},
 	},
 }
 

@@ -71,7 +71,7 @@ ui["edluffy/specs.nvim"] = {
 ui["folke/todo-comments.nvim"] = {
 	lazy = true,
 	requires = "nvim-lua/plenary.nvim",
-	config = conf.todo_comments,
+	config = require("ui.todo-comments"),
 }
 
 return ui

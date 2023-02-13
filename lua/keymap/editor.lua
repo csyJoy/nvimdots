@@ -20,7 +20,7 @@ local plug_map = {
 	["n|<leader>sd"] = map_cu("DeleteSession"):with_noremap():with_silent():with_desc("session: Delete"),
 
 	-- Plugin: nvim-bufdel
-	["n|<A-q>"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
+	["n|dq"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
 
 	-- Plugin: clever-f
 	["n|;"] = map_callback(function()
@@ -81,11 +81,17 @@ local plug_map = {
 		:with_desc("edit: Align with delimiter"),
 
 	-- Plugin: hop
-	["n|<leader>w"] = map_cu("HopWord"):with_noremap():with_desc("jump: Goto word"),
-	["n|<leader>j"] = map_cu("HopLine"):with_noremap():with_desc("jump: Goto line"),
-	["n|<leader>k"] = map_cu("HopLine"):with_noremap():with_desc("jump: Goto line"),
-	["n|<leader>c"] = map_cu("HopChar1"):with_noremap():with_desc("jump: Goto one char"),
-	["n|<leader>cc"] = map_cu("HopChar2"):with_noremap():with_desc("jump: Goto two chars"),
+	-- ["n|<leader>w"] = map_cu("HopWord"):with_noremap():with_desc("jump: Goto word"),
+	-- ["n|<leader>j"] = map_cu("HopLine"):with_noremap():with_desc("jump: Goto line"),
+	-- ["n|<leader>k"] = map_cu("HopLine"):with_noremap():with_desc("jump: Goto line"),
+	-- ["n|<leader>c"] = map_cu("HopChar1"):with_noremap():with_desc("jump: Goto one char"),
+	-- ["n|<leader>cc"] = map_cu("HopChar2"):with_noremap():with_desc("jump: Goto two chars"),
+
+	-- Plugin: leap
+	["n|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap(),
+	["n|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap(),
+	["v|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap(),
+	["v|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap(),
 
 	-- Plugin: treehopper
 	["o|m"] = map_cu("require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),

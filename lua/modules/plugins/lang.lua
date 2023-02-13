@@ -29,6 +29,6 @@ lang["chrisbra/csv.vim"] = {
 }
 lang["chrisbra/csv.vim"] = { opt = true, ft = "csv" }
 
-lang["lervag/vimtex"] = { config = conf.vim_tex }
+lang["lervag/vimtex"] = { config = require("lang.vim-tex")}
 
 return lang
