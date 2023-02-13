@@ -1,3 +1,5 @@
 lua/modules/*/user/*
 
 .DS_Store
+lua/modules/plugins/custom.lua
+lua/modules/configs/custom

@@ -1,4 +1,3 @@
-local vim = vim
 local autocmd = {}
 
 function autocmd.nvim_create_augroups(definitions)
@@ -24,8 +23,31 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
 			and layout[3] == nil
 		then
-			vim.cmd("confirm quit")
+			vim.api.nvim_command([[confirm quit]])
 		end
+	end,
+})
+
+-- auto close some filetype with <q>
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"qf",
+		"help",
+		"man",
+		"notify",
+		"nofile",
+		"lspinfo",
+		"terminal",
+		"prompt",
+		"toggleterm",
+		"copilot",
+		"startuptime",
+		"tsplayground",
+		"PlenaryTestPopup",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.api.nvim_buf_set_keymap(event.buf, "n", "q", "<CMD>close<CR>", { silent = true })
 	end,
 })
 
