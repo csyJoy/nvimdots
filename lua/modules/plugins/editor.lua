@@ -100,9 +100,4 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	},
 }
 
-editor["kazhala/close-buffers.nvim"] = {
-	lazy = true,
-	config = require("editor.close-buffers"),
-}
-
 return editor
