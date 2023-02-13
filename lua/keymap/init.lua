@@ -69,7 +69,6 @@ local plug_map = {
 	["i|<F5>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=vertical<CR>"):with_noremap():with_silent(),
 	["t|<F5>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>"):with_noremap():with_silent(),
 	["n|<leader>ft"] = map_cr([[execute v:count . "ToggleTerm direction=float"]]):with_noremap():with_silent(),
-	--["i|<leader>ft"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>"):with_noremap():with_silent(),
 	["t|<leader>ft"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>"):with_noremap():with_silent(),
 	["n|<leader>gi"] = map_cr("lua toggle_lazygit()"):with_noremap():with_silent(),
 	["t|<leader>gi"] = map_cmd("<Esc><Cmd>lua toggle_lazygit()<CR>"):with_noremap():with_silent(),
