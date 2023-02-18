@@ -188,6 +188,12 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step over"),
+	["n|m"] = map_callback(function()
+			require("dap").step_back()
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("debug: Step back"),
 	["n|<leader>dB"] = map_callback(function()
 			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end)

@@ -32,6 +32,18 @@ dap.configurations.cpp = {
 		-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
 		runInTerminal = false,
 	},
+	{
+		name = "Attach to process",
+		type = "lldb",
+		request = "attach",
+		pid = function()
+			return vim.fn.input("Process ID: ")
+		end,
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+	},
 }
 
 dap.configurations.c = dap.configurations.cpp
