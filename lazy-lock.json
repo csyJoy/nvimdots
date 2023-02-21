@@ -1,6 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
-  "LuaSnip": { "branch": "master", "commit": "92276ba735056dab04b0508e421a6a5d729e3f81" },
+  "LuaSnip": { "branch": "master", "commit": "d33cf7de14eea209b8ed4a7edaed72f0b8cedb30" },
   "accelerated-jk.nvim": { "branch": "main", "commit": "38bbbf9258aab876906588ea979901ed3ed569c6" },
   "alpha-nvim": { "branch": "main", "commit": "b3eef69e95674905bf26c7740dd4bbb09b355494" },
   "auto-session": { "branch": "main", "commit": "04ccdac802200ecc363b251cf922b2b022bb515c" },
@@ -61,7 +61,7 @@
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "2f3583001e2bf793480f38cf0d055571787b0259" },
   "nvim-ts-autotag": { "branch": "main", "commit": "fdefe46c6807441460f11f11a167a2baf8e4534b" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "a0f89563ba36b3bacd62cf967b46beb4c2c29e52" },
-  "nvim-ts-rainbow": { "branch": "master", "commit": "496ff7ea19cdd4e4b7cf2aeeb6780d015f3f9fa5" },
+  "nvim-ts-rainbow": { "branch": "master", "commit": "81f9a2e752edc793a34355be952dd1ebb1d5701b" },
   "nvim-web-devicons": { "branch": "master", "commit": "4709a504d2cd2680fb511675e64ef2790d491d36" },
   "paint.nvim": { "branch": "main", "commit": "cb91a79083c6eb7bb3b590d8723a0fe44a000a6d" },
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
@@ -89,7 +89,6 @@
   "vim-go": { "branch": "master", "commit": "b8a41085bfd67fee97ad075c6df65590ce7417a7" },
   "vim-illuminate": { "branch": "master", "commit": "49062ab1dd8fec91833a69f0a1344223dd59d643" },
   "vim-matchup": { "branch": "master", "commit": "3a48818a8113a502f245c29d894201421727577a" },
-  "vimtex": { "branch": "master", "commit": "8bbd3b0308ba8238c4d00a24d68a6074e19ccc0a" },
+  "vimtex": { "branch": "master", "commit": "05925afb8eaf6a76fad6e682270ad72a14faa757" },
   "which-key.nvim": { "branch": "main", "commit": "5224c261825263f46f6771f1b644cae33cd06995" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
-}
