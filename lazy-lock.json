@@ -92,4 +92,3 @@
   "vimtex": { "branch": "master", "commit": "082dcecb3ab7b5d9cd139f274695e3686a9d7ef5" },
   "which-key.nvim": { "branch": "main", "commit": "5224c261825263f46f6771f1b644cae33cd06995" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
-}
