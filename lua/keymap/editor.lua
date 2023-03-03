@@ -88,10 +88,10 @@ local plug_map = {
 	-- ["n|<leader>cc"] = map_cu("HopChar2"):with_noremap():with_desc("jump: Goto two chars"),
 
 	-- Plugin: leap
-	["n|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap(),
-	["n|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap(),
-	["v|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap(),
-	["v|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap(),
+	["n|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
+	["n|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
+	["v|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
+	["v|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
 
 	-- Plugin: treehopper
 	["o|m"] = map_cu("require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
