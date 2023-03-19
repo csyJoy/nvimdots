@@ -1,9 +1,13 @@
 local dap = require("dap")
 
 dap.adapters.lldb = {
-	type = "executable",
-	command = "/opt/homebrew/opt/llvm/bin/lldb-vscode",
+	type = "server",
+	port = "13000",
 	name = "lldb",
+	executable = {
+		command = "codelldb",
+		args = { "--port", "13000" },
+	},
 }
 dap.configurations.cpp = {
 	{
