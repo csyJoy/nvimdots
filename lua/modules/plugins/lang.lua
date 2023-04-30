@@ -34,7 +34,7 @@ lang["lervag/vimtex"] = { config = require("lang.vim-tex") }
 lang["ShinKage/idris2-nvim"] = {
 	lazy = true,
 	ft = "idris2",
-	confis = require("lang.idris"),
+	config = require("lang.idris"),
 	dependencies = { "neovim/nvim-lspconfig", "MunifTanjim/nui.nvim" },
 }
 
