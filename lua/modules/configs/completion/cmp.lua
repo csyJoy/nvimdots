@@ -168,9 +168,10 @@ return function()
 			-- { name = "cmp_tabnine" },
 		},
 		experimental = {
-			ghost_text = {
-				hl_group = "Whitespace",
-			},
+			-- ghost_text = {
+			-- 	hl_group = "Whitespace",
+			-- },
+			ghost_text = false,
 		},
 	})
 end
