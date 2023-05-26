@@ -110,9 +110,9 @@ function M.hl_to_rgb(hl_group, use_bg, fallback_hl)
 	if hlexists then
 		local result = vim.api.nvim_get_hl(0, { name = hl_group, link = false })
 		if use_bg then
-			hex = result.bg and result.bg or "NONE"
+			hex = result.bg and string.format("#%06x", result.bg) or "NONE"
 		else
-			hex = result.fg and result.fg or "NONE"
+			hex = result.fg and string.format("#%06x", result.fg) or "NONE"
 		end
 	end
 
@@ -200,6 +200,20 @@ function M.gen_alpha_hl()
 	vim.api.nvim_set_hl(0, "AlphaFooter", { fg = colors.yellow, default = true })
 end
 
+-- Generate blend_color for neodim.
+function M.gen_neodim_blend()
+	local trans_bg = require("core.settings").transparent_background
+	local bg = require("core.settings").background
+
+	if trans_bg and bg == "dark" then
+		return "#000000"
+	elseif trans_bg and bg == "light" then
+		return "#ffffff"
+	else
+		return M.hl_to_rgb("Normal", true)
+	end
+end
+
 ---Convert number (0/1) to boolean
 ---@param value number @The value to check
 ---@return boolean|nil @Returns nil if failed
@@ -212,7 +226,7 @@ function M.tobool(value)
 		vim.notify(
 			"Attempting to convert data of type '" .. type(value) .. "' [other than 0 or 1] to boolean",
 			vim.log.levels.ERROR,
-			{ title = "[utils] Runtime error" }
+			{ title = "[utils] Runtime Error" }
 		)
 		return nil
 	end
