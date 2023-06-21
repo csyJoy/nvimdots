@@ -16,7 +16,7 @@ settings["format_notify"] = true
 -- Set it to false if diagnostics virtual text is annoying.
 -- If disabled, you may browse lsp diagnostics using trouble.nvim (press `gt` to toggle it).
 ---@type boolean
-settings["diagnostics_virtual_text"] = false
+settings["diagnostics_virtual_text"] = true
 
 -- Set it to one of the values below if you want to change the visible severity level of lsp diagnostics.
 -- Priority: `Error` > `Warning` > `Information` > `Hint`.
@@ -31,7 +31,6 @@ settings["format_disabled_dirs"] = {
 	home .. "/format_disabled_dir_under_home",
 }
 
--- NOTE: The startup time will be slowed down when it's true.
 -- Set it to false if you don't use nvim to open big files.
 ---@type boolean
 settings["load_big_files_faster"] = true
@@ -103,6 +102,16 @@ settings["null_ls_deps"] = {
 	"shfmt",
 	"stylua",
 	"vint",
+}
+
+-- Set the Debug Adapter Protocol (DAP) clients that will be installed and configured during bootstrap here.
+-- Check the below link for all supported DAPs:
+-- https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
+---@type string[]
+settings["dap_deps"] = {
+	"codelldb", -- C-Family
+	"delve", -- Go
+	"python", -- Python (debugpy)
 }
 
 return settings
