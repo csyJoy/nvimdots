@@ -37,5 +37,16 @@ lang["ShinKage/idris2-nvim"] = {
 	config = require("lang.idris"),
 	dependencies = { "neovim/nvim-lspconfig", "MunifTanjim/nui.nvim" },
 }
+lang["xbase-lab/xbase"] = {
+	lazy = true,
+	ft = "swift",
+	build = "make install",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim",
+		"neovim/nvim-lspconfig",
+	},
+	config = require("lang.xbase"),
+}
 
 return lang
