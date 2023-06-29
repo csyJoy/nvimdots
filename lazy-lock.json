@@ -26,7 +26,7 @@
   "diffview.nvim": { "branch": "main", "commit": "ff8e57a966618e973f443b2df177cab02e7f325c" },
   "edge": { "branch": "master", "commit": "358cb6688ac577470a4eafcb53bdd63899dfc937" },
   "fidget.nvim": { "branch": "legacy", "commit": "90c22e47be057562ee9566bad313ad42d622c1d3" },
-  "friendly-snippets": { "branch": "main", "commit": "5749f093759c29e3694053d048ceb940fe12c3d3" },
+  "friendly-snippets": { "branch": "main", "commit": "1723ae01d83f3b3ac1530f1ae22b7b9d5da7749b" },
   "fzy-lua-native": { "branch": "master", "commit": "820f745b7c442176bcc243e8f38ef4b985febfaf" },
   "gitsigns.nvim": { "branch": "main", "commit": "a36bc3360d584d39b4fb076d855c4180842d4444" },
   "hop.nvim": { "branch": "v2", "commit": "90db1b2c61b820e230599a04fedcd2679e64bd07" },
@@ -95,4 +95,3 @@
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" },
   "xbase": { "branch": "master", "commit": "d3e7f51f17a8dbc5049ebf74c63598ca5162f01f" }
-}
