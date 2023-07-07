@@ -26,7 +26,7 @@ local plug_map = {
 	["n|;"] = map_callback(function()
 		return et("<Plug>(clever-f-repeat-forward)")
 	end):with_expr(),
-	["n|,"] = map_callback(function()
+	["n|<C-;>"] = map_callback(function()
 		return et("<Plug>(clever-f-repeat-back)")
 	end):with_expr(),
 
