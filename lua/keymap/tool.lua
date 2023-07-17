@@ -207,6 +207,8 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Open REPL"),
+	--plugin: ChatGPT
+	["n|<leader>ch"] = map_cr("ChatGPT"):with_noremap():with_silent():with_desc("ChatGPT: open ChatGPT"),
 }
 
 bind.nvim_load_mapping(plug_map)
