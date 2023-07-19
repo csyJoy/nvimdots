@@ -10,10 +10,10 @@ local plug_map = {
 	["n|go"] = map_cr("Lspsaga outline"):with_noremap():with_silent():with_desc("lsp: Toggle outline"),
 	["n|gE"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent():with_desc("lsp: Prev diagnostic"),
 	["n|ge"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent():with_desc("lsp: Next diagnostic"),
-	["n|<leader>sl"] = map_cr("Lspsaga show_line_diagnostics")
-		:with_noremap()
-		:with_silent()
-		:with_desc("lsp: Line diagnostic"),
+	-- ["n|<leader>sl"] = map_cr("Lspsaga show_line_diagnostics")
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("lsp: Line diagnostic"),
 	["n|gs"] = map_callback(function()
 			vim.lsp.buf.signature_help()
 		end)
