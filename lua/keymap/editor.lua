@@ -81,10 +81,15 @@ local plug_map = {
 		:with_desc("edit: Align with delimiter"),
 
 	-- Plugin: leap
-	["n|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
-	["n|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
-	["v|<leader>j"] = map_cmd([[<Plug>(leap-forward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
-	["v|<leader>k"] = map_cmd([[<Plug>(leap-backward-to)]]):with_noremap():with_desc("jump: Goto two chars"),
+	["n|S"] = map_cu("lua require('flash').jump()"):with_noremap():with_desc("flash: search words"),
+	["x|S"] = map_cu("lua require('flash').jump()"):with_noremap():with_desc("flash: search words"),
+	["o|S"] = map_cu("lua require('flash').jump()"):with_noremap():with_desc("flash: search words"),
+	-- ["n|S"] = map_cu("lua require('flash').treesitter()"):with_noremap():with_desc("flash: treesitter"),
+	-- ["x|S"] = map_cu("lua require('flash').treesitter()"):with_noremap():with_desc("flash: treesitter"),
+	-- ["o|S"] = map_cu("lua require('flash').treesitter()"):with_noremap():with_desc("flash: treesitter"),
+	["o|r"] = map_cu("lua require('flash').remote()"):with_noremap():with_desc("flash: remote"),
+	["x|R"] = map_cu("lua require('flash').treesitter_search()"):with_noremap():with_desc("flash: treesitter search"),
+	["o|R"] = map_cu("lua require('flash').treesitter_search()"):with_noremap():with_desc("flash: treesitter search"),
 
 	-- Plugin: treehopper
 	["o|m"] = map_cu("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),

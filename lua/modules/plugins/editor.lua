@@ -56,16 +56,20 @@ editor["junegunn/vim-easy-align"] = {
 	lazy = true,
 	cmd = "EasyAlign",
 }
-editor["smoka7/hop.nvim"] = {
+-- editor["smoka7/hop.nvim"] = {
+-- 	lazy = true,
+-- 	version = "*",
+-- 	event = { "CursorHold", "CursorHoldI" },
+-- 	config = require("editor.hop"),
+-- }
+-- editor["ggandor/leap.nvim"] = {
+-- 	lazy = true,
+-- 	event = "BufReadPost",
+-- 	config = require("editor.leap"),
+-- }
+editor["folke/flash.nvim"] = {
 	lazy = true,
-	version = "*",
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("editor.hop"),
-}
-editor["ggandor/leap.nvim"] = {
-	lazy = true,
-	event = "BufReadPost",
-	config = require("editor.leap"),
+	event = "VeryLazy",
 }
 editor["RRethy/vim-illuminate"] = {
 	lazy = true,
