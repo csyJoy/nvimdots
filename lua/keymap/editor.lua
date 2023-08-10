@@ -81,15 +81,51 @@ local plug_map = {
 		:with_desc("edit: Align with delimiter"),
 
 	-- Plugin: leap
-	["n|S"] = map_cu("lua require('flash').jump()"):with_noremap():with_desc("flash: search words"),
-	["x|S"] = map_cu("lua require('flash').jump()"):with_noremap():with_desc("flash: search words"),
-	["o|S"] = map_cu("lua require('flash').jump()"):with_noremap():with_desc("flash: search words"),
-	-- ["n|S"] = map_cu("lua require('flash').treesitter()"):with_noremap():with_desc("flash: treesitter"),
-	-- ["x|S"] = map_cu("lua require('flash').treesitter()"):with_noremap():with_desc("flash: treesitter"),
-	-- ["o|S"] = map_cu("lua require('flash').treesitter()"):with_noremap():with_desc("flash: treesitter"),
-	["o|r"] = map_cu("lua require('flash').remote()"):with_noremap():with_desc("flash: remote"),
-	["x|R"] = map_cu("lua require('flash').treesitter_search()"):with_noremap():with_desc("flash: treesitter search"),
-	["o|R"] = map_cu("lua require('flash').treesitter_search()"):with_noremap():with_desc("flash: treesitter search"),
+	["n|S"] = map_callback(function()
+			require("flash").jump()
+		end)
+		:with_noremap()
+		:with_desc("flash: search words"),
+	["x|S"] = map_callback(function()
+			require("flash").jump()
+		end)
+		:with_noremap()
+		:with_desc("flash: search words"),
+	["o|S"] = map_callback(function()
+			require("flash").jump()
+		end)
+		:with_noremap()
+		:with_desc("flash: search words"),
+	-- ["n|S"] = map_callback(function()
+	-- 		require("flash").treesitter()
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_desc("flash: treesitter"),
+	-- ["x|S"] = map_callback(function()
+	-- 		require("flash").treesitter()
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_desc("flash: treesitter"),
+	-- ["o|S"] = map_callback(function()
+	-- 		require("flash").treesitter()
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_desc("flash: treesitter"),
+	["o|r"] = map_callback(function()
+			require("flash").remote()
+		end)
+		:with_noremap()
+		:with_desc("flash: remote"),
+	["x|R"] = map_callback(function()
+			require("flash").treesitter_search()
+		end)
+		:with_noremap()
+		:with_desc("flash: treesitter search"),
+	["o|R"] = map_callback(function()
+			require("flash").treesitter_search()
+		end)
+		:with_noremap()
+		:with_desc("flash: treesitter search"),
 
 	-- Plugin: treehopper
 	["o|m"] = map_cu("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
