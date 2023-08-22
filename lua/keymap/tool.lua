@@ -207,7 +207,24 @@ local plug_map = {
 		:with_silent()
 		:with_desc("debug: Open REPL"),
 	--plugin: ChatGPT
-	["n|<leader>ch"] = map_cr("ChatGPT"):with_noremap():with_silent():with_desc("ChatGPT: open ChatGPT"),
+	["n|<leader>ch"] = map_cr("ChatGPT"):with_noremap():with_silent():with_desc("ChatGPT"),
+	["v|<leader>cag"] = map_cr("ChatGPTRun grammer_correction")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Grammar Correction"),
+	["v|<leader>cat"] = map_cr("ChatGPTRun translate"):with_noremap():with_silent():with_desc("Translate"),
+	["v|<leader>cak"] = map_cr("ChatGPTRun keywords"):with_noremap():with_silent():with_desc("Keywords"),
+	["v|<leader>cad"] = map_cr("ChatGPTRun docstring"):with_noremap():with_silent():with_desc("Docstring"),
+	["v|<leader>cae"] = map_cr("ChatGPTRun add_tests"):with_noremap():with_silent():with_desc("Add Test"),
+	["v|<leader>cao"] = map_cr("ChatGPTRun optimize_code"):with_noremap():with_silent():with_desc("Optimize Code"),
+	["v|<leader>cas"] = map_cr("ChatGPTRun summarize"):with_noremap():with_silent():with_desc("Summary"),
+	["v|<leader>caf"] = map_cr("ChatGPTRun fix_bugs"):with_noremap():with_silent():with_desc("Fix Bugs"),
+	["v|<leader>cap"] = map_cr("ChatGPTRun explain_code"):with_noremap():with_silent():with_desc("Explain"),
+	["v|<leader>cax"] = map_cr("ChatGPTRun roxygen_edit"):with_noremap():with_silent():with_desc("Roxygen Edit"),
+	["v|<leader>car"] = map_cr("ChatGPTRun code_readability_analysis")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Code Readability Analysis"),
 }
 
 bind.nvim_load_mapping(plug_map)
