@@ -80,6 +80,7 @@ end
 local neovide_config = function()
 	vim.api.nvim_set_option_value("guifont", "FiraCode Nerd Font:h20", {})
 	vim.g.neovide_refresh_rate = 120
+	vim.g.neovide_transparency = 0.7
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 	vim.g.neovide_no_idle = true
 	vim.g.neovide_cursor_animation_length = 0.03
