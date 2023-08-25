@@ -3,7 +3,7 @@ return function()
 
 	local opts = {
 		options = {
-			number = nil,
+			number = "buffer_id",
 			modified_icon = icons.ui.Modified,
 			buffer_close_icon = icons.ui.Close,
 			left_trunc_marker = icons.ui.Left,
@@ -19,7 +19,7 @@ return function()
 			enforce_regular_tabs = false,
 			persist_buffer_sort = true,
 			always_show_bufferline = true,
-			separator_style = "thin",
+			separator_style = "thick",
 			diagnostics = "nvim_lsp",
 			diagnostics_indicator = function(count)
 				return "(" .. count .. ")"
@@ -40,8 +40,8 @@ return function()
 			},
 		},
 		-- Change bufferline's highlights here! See `:h bufferline-highlights` for detailed explanation.
-		-- Note: If you use catppuccin then modify the colors below!
 		highlights = {},
+		-- Note: If you use catppuccin then modify the colors below!
 	}
 
 	if vim.g.colors_name:find("catppuccin") then
