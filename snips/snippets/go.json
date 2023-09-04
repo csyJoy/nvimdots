@@ -13,5 +13,10 @@
     "prefix": "gf",
     "body": "go ${1:func}($0)",
     "description": "Snippet for goroutine declaration"
+  },
+  "log with prefix": {
+    "prefix": "log",
+    "body": "DPrintf(\"[Term %d Server %d]: $1\", rf.currentTerm, rf.me, $2)",
+    "description": "print a log in 6.824"
   }
 }

@@ -122,7 +122,11 @@ tool["mfussenegger/nvim-dap"] = {
 tool["jackMort/ChatGPT.nvim"] = {
 	event = "VeryLazy",
 	config = function()
-		require("chatgpt").setup()
+		require("chatgpt").setup({
+			popup_input = {
+				submit = "<C-s>",
+			},
+		})
 	end,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
