@@ -75,10 +75,5 @@ ui["edluffy/specs.nvim"] = {
 	event = "CursorMoved",
 	config = require("ui.specs"),
 }
-ui["folke/todo-comments.nvim"] = {
-	dependencies = { "nvim-lua/plenary.nvim" },
-	config = require("ui.todo-comments"),
-	opts = {},
-}
 
 return ui

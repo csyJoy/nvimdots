@@ -10,7 +10,7 @@ settings["format_on_save"] = true
 
 -- Set it to false if the notification after formatting is annoying.
 ---@type boolean
-settings["format_notify"] = true
+settings["format_notify"] = false
 
 -- Set it to false if you don't use copilot
 ---@type boolean

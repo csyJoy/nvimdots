@@ -75,6 +75,14 @@ editor["lambdalisue/suda.vim"] = {
 	config = require("editor.suda"),
 }
 
+editor["folke/todo-comments.nvim"] = {
+	lazy = true,
+	event = "BufRead",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	config = require("editor.todo-comments"),
+	opts = {},
+}
+
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
