@@ -152,6 +152,16 @@ return function()
 			-- standalone file support
 			-- setting it to false may improve startup time
 			standalone = true,
+			settings = {
+				["rust-analyzer"] = {
+					cargo = {
+						autoReload = true,
+					},
+					check = {
+						allTargets = false,
+					},
+				},
+			},
 		}, -- rust-analyer options
 
 		-- debugging stuff
