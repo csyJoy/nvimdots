@@ -29,6 +29,7 @@ ui["lewis6991/gitsigns.nvim"] = {
 }
 ui["lukas-reineke/indent-blankline.nvim"] = {
 	lazy = true,
+	commit = "9637670",
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("ui.indent-blankline"),
 }
@@ -39,6 +40,7 @@ ui["nvim-lualine/lualine.nvim"] = {
 }
 ui["zbirenbaum/neodim"] = {
 	lazy = true,
+	commit = "9477da0",
 	event = "LspAttach",
 	config = require("ui.neodim"),
 }
