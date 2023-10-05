@@ -51,6 +51,13 @@ return vim.schedule_wrap(function()
 		},
 		context_commentstring = { enable = true, enable_autocmd = false },
 		matchup = { enable = true },
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				node_incremental = "v",
+				node_decremental = "V",
+			},
+		},
 	}, false, require("nvim-treesitter.configs").setup)
 	require("nvim-treesitter.install").prefer_git = true
 	if use_ssh then
