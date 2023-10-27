@@ -47,12 +47,19 @@ local mapping = {}
 function mapping.lsp(buf)
 	local map = {
 		-- LSP-related keymaps, ONLY effective in buffers with LSP(s) attached
-		["n|<leader>li"] = map_cr("LspInfo"):with_buffer(buf):with_desc("lsp: Info"),
-		["n|<leader>lr"] = map_cr("LspRestart"):with_buffer(buf):with_nowait():with_desc("lsp: Restart"),
-		["n|go"] = map_cr("SymbolsOutline"):with_buffer(buf):with_desc("lsp: Toggle outline"),
-		["n|g["] = map_cr("Lspsaga diagnostic_jump_prev"):with_buffer(buf):with_desc("lsp: Prev diagnostic"),
-		["n|g]"] = map_cr("Lspsaga diagnostic_jump_next"):with_buffer(buf):with_desc("lsp: Next diagnostic"),
+		["n|<leader>li"] = map_cr("LspInfo"):with_silent():with_buffer(buf):with_desc("lsp: Info"),
+		["n|<leader>lr"] = map_cr("LspRestart"):with_silent():with_buffer(buf):with_nowait():with_desc("lsp: Restart"),
+		["n|go"] = map_cr("SymbolsOutline"):with_silent():with_buffer(buf):with_desc("lsp: Toggle outline"),
+		["n|g["] = map_cr("Lspsaga diagnostic_jump_prev")
+			:with_silent()
+			:with_buffer(buf)
+			:with_desc("lsp: Prev diagnostic"),
+		["n|g]"] = map_cr("Lspsaga diagnostic_jump_next")
+			:with_silent()
+			:with_buffer(buf)
+			:with_desc("lsp: Next diagnostic"),
 		["n|<leader>ld"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
+			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Line diagnostic"),
 		["n|gs"] = map_callback(function()
