@@ -16,6 +16,10 @@ return function()
 		nvim_lsp.dartls.setup(final_opts)
 	end
 
+	if vim.fn.executable("racket") == 1 then
+		nvim_lsp.racket_langserver.setup({})
+	end
+
 	pcall(require, "user.configs.lsp")
 
 	vim.api.nvim_command([[LspStart]]) -- Start LSPs
