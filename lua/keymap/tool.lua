@@ -228,6 +228,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("Code Readability Analysis"),
+	["x|<leader>re"] = map_cr("Refactor extract"):with_noremap():with_silent():with_desc("Extract Function"),
 }
 
 bind.nvim_load_mapping(plug_map)

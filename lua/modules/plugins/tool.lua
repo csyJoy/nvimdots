@@ -133,4 +133,12 @@ tool["jackMort/ChatGPT.nvim"] = {
 	},
 }
 
+tool["ThePrimeagen/refactoring.nvim"] = {
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+	},
+	config = require("tool.refactoring"),
+}
+
 return tool
