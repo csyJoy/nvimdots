@@ -118,6 +118,7 @@ tool["mfussenegger/nvim-dap"] = {
 }
 
 tool["jackMort/ChatGPT.nvim"] = {
+	lazy = true,
 	event = "VeryLazy",
 	config = function()
 		require("chatgpt").setup({
@@ -134,6 +135,7 @@ tool["jackMort/ChatGPT.nvim"] = {
 }
 
 tool["ThePrimeagen/refactoring.nvim"] = {
+	lazy = true,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
