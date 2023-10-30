@@ -228,7 +228,22 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("Code Readability Analysis"),
+
+	--plugin: refactoring.nvim
 	["x|<leader>re"] = map_cr("Refactor extract"):with_noremap():with_silent():with_desc("Extract Function"),
+	["x|<leader>rf"] = map_cr("Refactor extract_to_file")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Extract Function To File"),
+	["x|<leader>rv"] = map_cr("Refactor extract_var"):with_noremap():with_silent():with_desc("Extract Variable"),
+	["x|<leader>ri"] = map_cr("Refactor inline_var"):with_noremap():with_silent():with_desc("Inline Variable"),
+	["n|<leader>ri"] = map_cr("Refactor inline_var"):with_noremap():with_silent():with_desc("Inline Variable"),
+	["n|<leader>rI"] = map_cr("Refactor inline_func"):with_noremap():with_silent():with_desc("Inline Function"),
+	["n|<leader>rb"] = map_cr("Refactor extract_block"):with_noremap():with_silent():with_desc("Inline Block"),
+	["n|<leader>rbf"] = map_cr("Refactor extract_block_to_file")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Inline Block To File"),
 }
 
 bind.nvim_load_mapping(plug_map)
