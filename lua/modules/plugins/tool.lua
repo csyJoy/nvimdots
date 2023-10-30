@@ -143,4 +143,11 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 	config = require("tool.refactoring"),
 }
 
+tool["nvim-neorg/neorg"] = {
+	build = ":Neorg sync-parsers",
+	cmd = "Neorg",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	config = require("tool.neorg"),
+}
+
 return tool
