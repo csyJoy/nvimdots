@@ -21,7 +21,6 @@ local plug_map = {
 	-- ["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
 
 	-- Plugin: toggleterm
-	["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
 	["t|jj"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
 	["n|<C-\\>"] = map_cr("ToggleTerm direction=horizontal")
 		:with_noremap()
@@ -49,10 +48,6 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle vertical"),
-	-- ["t|<F5>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
-	-- 	:with_noremap()
-	-- 	:with_silent()
-	-- 	:with_desc("terminal: Toggle vertical"),
 	["n|<leader>ft"] = map_cr([[execute v:count . "ToggleTerm direction=float"]])
 		:with_noremap()
 		:with_silent()

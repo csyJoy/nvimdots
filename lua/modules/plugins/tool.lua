@@ -118,7 +118,7 @@ tool["mfussenegger/nvim-dap"] = {
 }
 
 tool["jackMort/ChatGPT.nvim"] = {
-	cmd = "ChatGPT",
+	cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs" },
 	config = function()
 		require("chatgpt").setup({
 			popup_input = {
@@ -145,6 +145,7 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 tool["nvim-neorg/neorg"] = {
 	build = ":Neorg sync-parsers",
 	cmd = "Neorg",
+	ft = "norg",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = require("tool.neorg"),
 }

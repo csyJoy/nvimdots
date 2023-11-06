@@ -29,16 +29,17 @@ lang["chrisbra/csv.vim"] = {
 }
 lang["chrisbra/csv.vim"] = { opt = true, ft = "csv" }
 
-lang["lervag/vimtex"] = { config = require("lang.vim-tex") }
+lang["lervag/vimtex"] = {
+	ft = "tex",
+	config = require("lang.vim-tex"),
+}
 
 lang["ShinKage/idris2-nvim"] = {
-	lazy = true,
 	ft = "idris2",
 	config = require("lang.idris"),
 	dependencies = { "neovim/nvim-lspconfig", "MunifTanjim/nui.nvim" },
 }
 lang["xbase-lab/xbase"] = {
-	lazy = true,
 	ft = "swift",
 	build = "make install",
 	dependencies = {
