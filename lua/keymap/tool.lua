@@ -223,6 +223,10 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("Code Readability Analysis"),
+	["v|<leader>cai"] = map_cr("ChatGPTEditWithInstructions")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Edit With Instructions"),
 
 	--plugin: refactoring.nvim
 	["x|<leader>re"] = map_cr("Refactor extract"):with_noremap():with_silent():with_desc("Extract Function"),

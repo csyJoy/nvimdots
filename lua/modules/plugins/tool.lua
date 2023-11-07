@@ -118,14 +118,8 @@ tool["mfussenegger/nvim-dap"] = {
 }
 
 tool["jackMort/ChatGPT.nvim"] = {
-	cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs" },
-	config = function()
-		require("chatgpt").setup({
-			popup_input = {
-				submit = "<C-s>",
-			},
-		})
-	end,
+	cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
+	config = require("tool.chatgpt"),
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"nvim-lua/plenary.nvim",
