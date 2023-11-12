@@ -50,4 +50,8 @@ lang["xbase-lab/xbase"] = {
 	config = require("lang.xbase"),
 }
 
+lang["ashinkarov/nvim-agda"] = {
+	ft = "agda",
+}
+
 return lang
