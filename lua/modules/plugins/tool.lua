@@ -128,7 +128,7 @@ tool["jackMort/ChatGPT.nvim"] = {
 }
 
 tool["ThePrimeagen/refactoring.nvim"] = {
-	lazy = true,
+	event = "LspAttach",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",

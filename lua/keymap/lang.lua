@@ -10,9 +10,9 @@ local plug_map = {
 	["n|<F12>"] = map_cr("MarkdownPreviewToggle"):with_noremap():with_silent():with_desc("tool: Preview markdown"),
 
 	-- Plugin vimtex
-	["n|<leader>ls"] = map_cmd([[<Plug>(vimtex-view)]]):with_silent():with_desc("view current tex"),
-	["n|<leader>lc"] = map_cmd([[<Plug>(vimtex-compile)]]):with_silent():with_desc("compile current tex"),
-	["n|<leader>lt"] = map_cmd([[<Plug>(vimtex-toc-open)]]):with_silent():with_desc("open pdf"),
+	["n|<leader>ls"] = map_cmd("<Plug>(vimtex-view)"):with_silent():with_desc("view current tex"),
+	["n|<leader>lc"] = map_cmd("<Plug>(vimtex-compile)"):with_silent():with_desc("compile current tex"),
+	["n|<leader>lt"] = map_cmd("<Plug>(vimtex-toc-open)"):with_silent():with_desc("open pdf"),
 }
 
 bind.nvim_load_mapping(plug_map)
