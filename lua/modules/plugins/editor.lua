@@ -63,10 +63,6 @@ editor["junegunn/vim-easy-align"] = {
 	lazy = true,
 	cmd = "EasyAlign",
 }
-editor["folke/flash.nvim"] = {
-	lazy = true,
-	event = "VeryLazy",
-}
 editor["RRethy/vim-illuminate"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
