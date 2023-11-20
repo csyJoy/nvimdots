@@ -1,7 +1,9 @@
 return function()
 	require("chatgpt").setup({
-		popup_input = {
-			submit = "<C-s>",
+		chat = {
+			keymaps = {
+				stop_generating = "<C-b>",
+			},
 		},
 	})
 end
