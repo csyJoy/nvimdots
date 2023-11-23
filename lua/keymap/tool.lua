@@ -243,6 +243,26 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("Inline Block To File"),
+
+	--plugin: obsidian.nvim
+	["n|<leader>fo"] = map_cr("ObsidianSearch"):with_noremap():with_silent():with_desc("find: obsidian word"),
+	["n|<leader>oo"] = map_cr("ObsidianOpen")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Obsidian: open current file in obsidian"),
+	["n|<leader>ot"] = map_cr("ObsidianToday"):with_noremap():with_silent():with_desc("Obsidian: open today daily"),
+	["n|<leader>oy"] = map_cr("ObsidianYesterday")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Obsidian: open yesterday daily"),
+	["n|<leader>om"] = map_cr("ObsidianTomorrow")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Obsidian: open tomorrow daily"),
+	["n|<leader>ov"] = map_cr("ObsidianPasteImg")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Obsidian: paste image in clipboard"),
 }
 
 bind.nvim_load_mapping(plug_map)
