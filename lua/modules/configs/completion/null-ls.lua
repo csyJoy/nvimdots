@@ -34,6 +34,13 @@ return function()
 				"sh",
 				"markdown",
 			},
+			disabled_filetypes = { "markdown" },
+		}),
+		btns.formatting.prettierd.with({
+			disabled_filetypes = { "markdown" },
+		}),
+		btns.formatting.markdownlint.with({
+			disabled_filetypes = { "markdown" },
 		}),
 		btns.formatting.rustfmt,
 	}

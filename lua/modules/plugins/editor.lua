@@ -128,5 +128,10 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 		},
 	},
 }
+editor["kylechui/nvim-surround"] = {
+	version = "*",
+	event = "VeryLazy",
+	config = require("editor.nvim-surround"),
+}
 
 return editor
