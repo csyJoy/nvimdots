@@ -204,8 +204,8 @@ local plug_map = {
 		:with_silent()
 		:with_desc("debug: Open REPL"),
 	--plugin: ChatGPT
-	["n|<leader>ch"] = map_cr("ChatGPT"):with_noremap():with_silent():with_desc("ChatGPT"),
-	["n|<leader>cas"] = map_cr("ChatGPTActAs"):with_noremap():with_silent():with_desc("ChatGPT"),
+	["n|<leader>a"] = map_cr("ChatGPT"):with_noremap():with_silent():with_desc("ChatGPT"),
+	["n|<leader>cas"] = map_cr("ChatGPTActAs"):with_noremap():with_silent():with_desc("ChatGPT Act As"),
 	["v|<leader>cag"] = map_cr("ChatGPTRun grammer_correction")
 		:with_noremap()
 		:with_silent()
