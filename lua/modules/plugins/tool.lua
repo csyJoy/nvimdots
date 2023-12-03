@@ -136,14 +136,6 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 	config = require("tool.refactoring"),
 }
 
-tool["nvim-neorg/neorg"] = {
-	build = ":Neorg sync-parsers",
-	cmd = "Neorg",
-	ft = "norg",
-	dependencies = { "nvim-lua/plenary.nvim" },
-	config = require("tool.neorg"),
-}
-
 tool["epwalsh/obsidian.nvim"] = {
 	version = "*", -- recommended, use latest release instead of latest commit
 	lazy = true,
