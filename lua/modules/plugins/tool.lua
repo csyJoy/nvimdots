@@ -168,4 +168,13 @@ tool["epwalsh/obsidian.nvim"] = {
 	},
 	opts = require("tool.obsidian"),
 }
+
+tool["demo"] = {
+	cmd = "GenerateFlashcards",
+	dir = "/Users/csy/demo.nvim",
+	dependencies = {
+		"epwalsh/obsidian.nvim",
+	},
+}
+
 return tool

@@ -265,6 +265,20 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("Obsidian: paste image in clipboard"),
+
+	--plugin: demo.nvim
+	["n|<leader>fl"] = map_cr("GenerateFlashcards")
+		:with_noremap()
+		:with_silent()
+		:with_desc("Obsidian: generate flashcards"),
+
+	["v|<leader>nl"] = map_callback(function()
+			local text = require("demo").get_selected_text()
+			vim.cmd("ObsidianLinkNew" .. " " .. text .. ".md")
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("Obsidian: link to new note"),
 }
 
 bind.nvim_load_mapping(plug_map)
