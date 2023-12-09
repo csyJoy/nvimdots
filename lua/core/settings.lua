@@ -185,7 +185,10 @@ settings["neovide_config"] = {
 	cursor_vfx_particle_speed = 20.0,
 	cursor_vfx_particle_density = 5.0,
 	cursor_vfx_particle_lifetime = 1.2,
-	transparency = 0.7,
+	transparency = 0.0,
+	background_color = "#1a1b26" .. string.format("%x", math.floor(255 * (vim.g.transparency or 0.8))),
+	floating_blur_amount_x = 2.0,
+	floating_blur_amount_y = 2.0,
 }
 
 return require("modules.utils").extend_config(settings, "user.settings")
