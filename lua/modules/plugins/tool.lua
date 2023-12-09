@@ -169,6 +169,11 @@ tool["epwalsh/obsidian.nvim"] = {
 	opts = require("tool.obsidian"),
 }
 
+tool["pocco81/auto-save.nvim"] = {
+	ft = "rust",
+	config = require("tool.auto-save"),
+}
+
 tool["demo"] = {
 	cmd = "GenerateFlashcards",
 	dir = "/Users/csy/demo.nvim",
