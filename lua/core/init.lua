@@ -155,6 +155,7 @@ local load_core = function()
 	clipboard_config()
 	shell_config()
 
+	vim.g.current_input_method = vim.fn.system("im-select")
 	require("core.options")
 	require("core.mapping")
 	require("keymap")
