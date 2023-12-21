@@ -3,6 +3,7 @@ return function()
 		chat = {
 			keymaps = {
 				stop_generating = "<C-b>",
+				edit_message = "<C-e>",
 			},
 		},
 		openai_params = {

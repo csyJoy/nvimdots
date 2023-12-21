@@ -37,14 +37,14 @@ return function()
 			disabled_filetypes = { "markdown" },
 		}),
 		btns.formatting.prettierd.with({
-			disabled_filetypes = { "markdown" },
+			disabled_filetypes = { "markdown", "vue" },
 		}),
 		btns.formatting.markdownlint.with({
 			disabled_filetypes = { "markdown" },
 		}),
-        btns.formatting.eslint_d.with({
-            disabled_filetypes = {"typescript"}
-        }),
+		btns.formatting.eslint_d.with({
+			disabled_filetypes = { "typescript", "vue" },
+		}),
 		btns.formatting.rustfmt,
 	}
 	require("modules.utils").load_plugin("null-ls", {

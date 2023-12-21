@@ -22,14 +22,6 @@ local plug_map = {
 	-- Plugin: nvim-bufdel
 	["n|dq"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
 
-	-- Plugin: clever-f
-	["n|;"] = map_callback(function()
-		return et("<Plug>(clever-f-repeat-forward)")
-	end):with_expr(),
-	["n|<C-;>"] = map_callback(function()
-		return et("<Plug>(clever-f-repeat-back)")
-	end):with_expr(),
-
 	-- Plugin: comment.nvim
 	["n|gcc"] = map_callback(function()
 			return vim.v.count == 0 and et("<Plug>(comment_toggle_linewise_current)")
@@ -80,7 +72,7 @@ local plug_map = {
 		:with_expr()
 		:with_desc("edit: Align with delimiter"),
 
-	-- Plugin: leap
+	-- Plugin: flash.nvim
 	["n|S"] = map_callback(function()
 			require("flash").jump()
 		end)
@@ -96,21 +88,6 @@ local plug_map = {
 		end)
 		:with_noremap()
 		:with_desc("flash: search words"),
-	-- ["n|S"] = map_callback(function()
-	-- 		require("flash").treesitter()
-	-- 	end)
-	-- 	:with_noremap()
-	-- 	:with_desc("flash: treesitter"),
-	-- ["x|S"] = map_callback(function()
-	-- 		require("flash").treesitter()
-	-- 	end)
-	-- 	:with_noremap()
-	-- 	:with_desc("flash: treesitter"),
-	-- ["o|S"] = map_callback(function()
-	-- 		require("flash").treesitter()
-	-- 	end)
-	-- 	:with_noremap()
-	-- 	:with_desc("flash: treesitter"),
 	["o|r"] = map_callback(function()
 			require("flash").remote()
 		end)

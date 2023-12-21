@@ -63,6 +63,7 @@ ui["dstein64/nvim-scrollview"] = {
 	config = require("ui.scrollview"),
 }
 ui["edluffy/specs.nvim"] = {
+	cond = false,
 	lazy = true,
 	event = "CursorMoved",
 	config = require("ui.specs"),
