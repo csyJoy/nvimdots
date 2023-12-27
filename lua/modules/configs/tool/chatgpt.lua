@@ -13,5 +13,6 @@ return function()
 		openai_edit_params = {
 			model = "gpt-4-1106-preview",
 		},
+		local_chat_gpt_prompts_path = "/Users/csy/ChatGPT.nvim/foo.csv",
 	})
 end
