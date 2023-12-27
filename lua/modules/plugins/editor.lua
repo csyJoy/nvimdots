@@ -134,4 +134,9 @@ editor["kylechui/nvim-surround"] = {
 	config = require("editor.nvim-surround"),
 }
 
+editor["nvim-focus/focus.nvim"] = {
+	version = false,
+	config = require("editor.focus"),
+}
+
 return editor
