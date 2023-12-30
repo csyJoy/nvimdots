@@ -175,6 +175,12 @@ tool["pocco81/auto-save.nvim"] = {
 	config = require("tool.auto-save"),
 }
 
+tool["folke/neodev.nvim"] = {
+	lazy = true,
+	opts = {},
+	config = require("tool.neodev"),
+}
+
 tool["demo"] = {
 	cmd = "GenerateFlashcards",
 	dir = "/Users/csy/demo.nvim",

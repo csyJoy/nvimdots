@@ -28,6 +28,9 @@ M.setup = function()
 	---A handler to setup all servers defined under `completion/servers/*.lua`
 	---@param lsp_name string
 	local function mason_lsp_handler(lsp_name)
+		if lsp_name == "lua_ls" then
+			require("neodev").setup({})
+		end
 		local ok, custom_handler = pcall(require, "user.configs.lsp-servers." .. lsp_name)
 		-- Use preset if there is no user definition
 		if not ok then
