@@ -63,33 +63,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Fix fold issue of files opened by telescope
-vim.api.nvim_create_autocmd("BufRead", {
-	callback = function()
-		vim.api.nvim_create_autocmd("BufWinEnter", {
-			once = true,
-			command = "normal! zx",
-		})
-	end,
-})
-
-vim.api.nvim_create_autocmd("InsertEnter", {
-	callback = function()
-		if vim.g.current_input_method ~= "com.apple.keylayout.ABC\n" then
-			vim.fn.system("im-select " .. string.gsub(vim.g.current_input_method, "\n", ""))
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("InsertLeave", {
-	callback = function()
-		vim.g.current_input_method = vim.fn.system("im-select")
-		if vim.g.current_input_method ~= "com.apple.keylayout.ABC\n" then
-			vim.fn.system("im-select com.apple.keylayout.ABC")
-		end
-	end,
-})
-
 function autocmd.load_autocmds()
 	local definitions = {
 		lazy = {},
