@@ -161,9 +161,9 @@ local load_core = function()
 	vim.g.current_input_method = vim.fn.system("im-select")
 	require("core.options")
 	require("core.mapping")
-	require("keymap")
 	require("core.event")
 	require("core.pack")
+	require("keymap")
 
 	local colorscheme = settings.colorscheme
 	local background = settings.background

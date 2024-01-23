@@ -29,7 +29,7 @@ function mapping.lsp(buf)
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Next diagnostic"),
-		["n|<leader>ld"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
+		["n|<leader>lx"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Line diagnostic"),
