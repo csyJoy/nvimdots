@@ -91,14 +91,4 @@ if use_copilot then
 	}
 end
 
-completion["Julian/lean.nvim"] = {
-	lazy = true,
-	event = { "BufReadPre *.lean", "BufNewFile *.lean" },
-	config = require("completion.lean"),
-	dependencies = {
-		"neovim/nvim-lspconfig",
-		"nvim-lua/plenary.nvim",
-	},
-}
-
 return completion
