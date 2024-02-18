@@ -88,6 +88,14 @@ return function()
 				require("telescope.builtin").live_grep()
 			end,
 		}),
+		button("space o t", " Open today note", leader, nil, {
+			noremap = true,
+			silent = true,
+			nowait = true,
+			callback = function()
+				vim.cmd("ObsidianToday")
+			end,
+		}),
 	}
 	dashboard.section.buttons.opts.hl = "AlphaButtons"
 
