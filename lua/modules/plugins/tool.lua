@@ -138,6 +138,7 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 }
 
 tool["epwalsh/obsidian.nvim"] = {
+	dir = "/Users/csy/obsidian.nvim/",
 	version = "*", -- recommended, use latest release instead of latest commit
 	lazy = true,
 	cmd = {
