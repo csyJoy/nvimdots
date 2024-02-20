@@ -9,7 +9,7 @@ return {
 	disable_frontmatter = true,
 	daily_notes = {
 		folder = "daily",
-		template = "template.md",
+		template = "daily-template.md",
 	},
 	image_name_func = function()
 		local year = os.date("%Y")
@@ -22,7 +22,7 @@ return {
 		return filename
 	end,
 	templates = {
-		subdir = "daily",
+		subdir = "template",
 	},
 	attachments = {
 		img_folder = ".",
@@ -40,6 +40,6 @@ return {
 		end,
 	},
 	ui = {
-		enable = false,
+		enable = true,
 	},
 }

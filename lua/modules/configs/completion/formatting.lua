@@ -103,15 +103,17 @@ end
 function M.format(opts)
 	local filedir = vim.fn.expand("%:p:h")
 	for i = 1, #disabled_workspaces do
-		if vim.regex(vim.fs.normalize(disabled_workspaces[i])):match_str(filedir) ~= nil then
-			vim.notify(
-				string.format(
-					"[LSP] Formatting for all files under [%s] has been disabled.",
-					vim.fs.normalize(disabled_workspaces[i])
-				),
-				vim.log.levels.WARN,
-				{ title = "LSP Formatter Warning" }
-			)
+		if vim.regex(disabled_workspaces[i]):match_str(filedir) ~= nil then
+			if format_notify then
+				vim.notify(
+					string.format(
+						"[LSP] Formatting for all files under [%s] has been disabled.",
+						vim.fs.normalize(disabled_workspaces[i])
+					),
+					vim.log.levels.WARN,
+					{ title = "LSP Formatter Warning" }
+				)
+			end
 			return
 		end
 	end

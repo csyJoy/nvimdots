@@ -30,7 +30,7 @@ settings["format_modifications_only"] = false
 ---@type string[]
 settings["format_disabled_dirs"] = {
 	-- Example
-	"~/format_disabled_dir",
+	"/Users/csy/Library/Mobile Documents/iCloud\\~md\\~obsidian/Documents/knowledge/*",
 }
 
 -- Set it to false if diagnostics virtual text is annoying.
