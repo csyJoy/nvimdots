@@ -101,4 +101,3 @@
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" },
   "xbase": { "branch": "master", "commit": "30ed3e638434ee7a09d7dad46562fc6925300145" }
-}
