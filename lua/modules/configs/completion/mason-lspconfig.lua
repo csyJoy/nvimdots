@@ -28,9 +28,6 @@ M.setup = function()
 	---A handler to setup all servers defined under `completion/servers/*.lua`
 	---@param lsp_name string
 	local function mason_lsp_handler(lsp_name)
-		if lsp_name == "lua_ls" then
-			require("neodev").setup({})
-		end
 		-- rust_analyzer is configured using mrcjkb/rustaceanvim
 		-- warn users if they have set it up manually
 		if lsp_name == "rust_analyzer" then

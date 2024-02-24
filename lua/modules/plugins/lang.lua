@@ -38,29 +38,4 @@ lang["chrisbra/csv.vim"] = {
 }
 lang["chrisbra/csv.vim"] = { opt = true, ft = "csv" }
 
-lang["lervag/vimtex"] = {
-	ft = "tex",
-	config = require("lang.vim-tex"),
-}
-
-lang["ShinKage/idris2-nvim"] = {
-	ft = "idris2",
-	config = require("lang.idris"),
-	dependencies = { "neovim/nvim-lspconfig", "MunifTanjim/nui.nvim" },
-}
-lang["xbase-lab/xbase"] = {
-	ft = "swift",
-	build = "make install",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
-		"neovim/nvim-lspconfig",
-	},
-	config = require("lang.xbase"),
-}
-
-lang["ashinkarov/nvim-agda"] = {
-	ft = "agda",
-}
-
 return lang
