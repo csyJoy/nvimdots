@@ -49,6 +49,7 @@ lang["ShinKage/idris2-nvim"] = {
 	dependencies = { "neovim/nvim-lspconfig", "MunifTanjim/nui.nvim" },
 }
 lang["xbase-lab/xbase"] = {
+	cond = false,
 	ft = "swift",
 	build = "make install",
 	dependencies = {
