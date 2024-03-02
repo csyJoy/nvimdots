@@ -38,6 +38,7 @@ return {
 			end
 			return string.format("![[%s]]", link_path)
 		end,
+		confirm_img_paste = false,
 	},
 	ui = {
 		enable = true,
