@@ -159,6 +159,7 @@ local load_core = function()
 	shell_config()
 
 	vim.g.current_input_method = vim.fn.system("im-select")
+	vim.g.remote_enviroment = vim.fn.system("echo $SSH_CLIENT")
 	require("core.options")
 	require("core.mapping")
 	require("core.event")
