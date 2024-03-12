@@ -19,7 +19,13 @@ lang["mrcjkb/rustaceanvim"] = {
 	ft = "rust",
 	version = "^3",
 	config = require("lang.rust"),
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{
+			"lvimuser/lsp-inlayhints.nvim",
+			opts = {},
+		},
+	},
 }
 lang["Saecki/crates.nvim"] = {
 	lazy = true,
