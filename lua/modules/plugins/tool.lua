@@ -177,9 +177,7 @@ tool["folke/neodev.nvim"] = {
 	config = require("tool.neodev"),
 }
 
-tool["numToStr/Navigator.nvim"] = {
-	config = require("tool.navigator"),
-}
+tool["mrjones2014/smart-splits.nvim"] = {}
 
 tool["demo"] = {
 	cmd = "GenerateFlashcards",
