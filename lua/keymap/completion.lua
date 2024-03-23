@@ -21,14 +21,14 @@ function mapping.lsp(buf)
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Toggle outline in Telescope"),
-		["n|gE"] = map_cr("Lspsaga diagnostic_jump_prev")
-			:with_silent()
-			:with_buffer(buf)
-			:with_desc("lsp: Prev diagnostic"),
 		["n|ge"] = map_cr("Lspsaga diagnostic_jump_next")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Next diagnostic"),
+		["n|gE"] = map_cr("Lspsaga diagnostic_jump_prev")
+			:with_silent()
+			:with_buffer(buf)
+			:with_desc("lsp: Prev diagnostic"),
 		["n|<leader>lx"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
 			:with_silent()
 			:with_buffer(buf)
