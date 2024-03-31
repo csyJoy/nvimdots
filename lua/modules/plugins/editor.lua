@@ -134,4 +134,10 @@ editor["nvim-focus/focus.nvim"] = {
 	config = require("editor.focus"),
 }
 
+editor["max397574/better-escape.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("editor.better-escape"),
+}
+
 return editor
