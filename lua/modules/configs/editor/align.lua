@@ -4,8 +4,8 @@ return function()
 		silent = false,
 		-- Module mappings. Use `''` (empty string) to disable one.
 		mappings = {
-			start = "gea",
-			start_with_preview = "geA",
+			start = "gAa",
+			start_with_preview = "gAA",
 		},
 	})
 end
