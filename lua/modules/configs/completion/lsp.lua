@@ -21,6 +21,10 @@ return function()
 		nvim_lsp.racket_langserver.setup({})
 	end
 
+	if vim.fn.executable("haskell-language-server-wrapper") == 1 then
+		nvim_lsp.hls.setup({})
+	end
+
 	pcall(require, "user.configs.lsp")
 
 	vim.api.nvim_command([[LspStart]]) -- Start LSPs
