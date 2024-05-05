@@ -87,4 +87,20 @@ tool["jellydn/CopilotChat.nvim"] = {
 	},
 }
 
+tool["theHamsta/nvim-dap-virtual-text"] = {
+	lazy = true,
+	init = function()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "LazyLoad",
+			callback = function(event)
+				if event.data == "nvim-dap" then
+					require("user.configs.tool.virtual-text")()
+					return true
+				end
+			end,
+		})
+	end,
+	config = true,
+}
+
 return tool
