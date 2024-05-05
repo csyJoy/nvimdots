@@ -25,10 +25,4 @@ editor["folke/todo-comments.nvim"] = {
 	opts = {},
 }
 
-editor["echasnovski/mini.align"] = {
-	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("user.configs.editor.align"),
-}
-
 return editor
