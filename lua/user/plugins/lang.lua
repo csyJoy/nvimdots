@@ -4,12 +4,12 @@ lang["chrisbra/csv.vim"] = { opt = true, ft = "csv" }
 
 lang["lervag/vimtex"] = {
 	ft = "tex",
-	config = require("user.configs.lang.vim-tex"),
+	config = require("lang.vim-tex"),
 }
 
 lang["ShinKage/idris2-nvim"] = {
 	ft = "idris2",
-	config = require("user.configs.lang.idris"),
+	config = require("lang.idris"),
 	dependencies = { "neovim/nvim-lspconfig", "MunifTanjim/nui.nvim" },
 }
 

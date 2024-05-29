@@ -3,25 +3,25 @@ local editor = {}
 editor["max397574/better-escape.nvim"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
-	config = require("user.configs.editor.better-escape"),
+	config = require("editor.better-escape"),
 }
 
 editor["kylechui/nvim-surround"] = {
 	version = "*",
 	event = "VeryLazy",
-	config = require("user.configs.editor.nvim-surround"),
+	config = require("editor.nvim-surround"),
 }
 
 editor["nvim-focus/focus.nvim"] = {
 	version = false,
-	config = require("user.configs.editor.focus"),
+	config = require("editor.focus"),
 }
 
 editor["folke/todo-comments.nvim"] = {
 	lazy = true,
 	event = "BufRead",
 	dependencies = { "nvim-lua/plenary.nvim" },
-	config = require("user.configs.editor.todo-comments"),
+	config = require("editor.todo-comments"),
 	opts = {},
 }
 

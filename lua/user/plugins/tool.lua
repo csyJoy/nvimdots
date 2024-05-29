@@ -3,7 +3,7 @@ local tool = {}
 tool["jackMort/ChatGPT.nvim"] = {
 	dir = "/Users/csy/ChatGPT.nvim",
 	cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
-	config = require("user.configs.tool.chatgpt"),
+	config = require("tool.chatgpt"),
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"nvim-lua/plenary.nvim",
@@ -17,7 +17,7 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
-	config = require("user.configs.tool.refactoring"),
+	config = require("tool.refactoring"),
 }
 
 tool["epwalsh/obsidian.nvim"] = {
@@ -51,13 +51,13 @@ tool["epwalsh/obsidian.nvim"] = {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	opts = require("user.configs.tool.obsidian"),
+	opts = require("tool.obsidian"),
 }
 
 tool["folke/neodev.nvim"] = {
 	lazy = true,
 	opts = {},
-	config = require("user.configs.tool.neodev"),
+	config = require("tool.neodev"),
 }
 
 tool["mrjones2014/smart-splits.nvim"] = {}
@@ -94,7 +94,7 @@ tool["theHamsta/nvim-dap-virtual-text"] = {
 			pattern = "LazyLoad",
 			callback = function(event)
 				if event.data == "nvim-dap" then
-					require("user.configs.tool.virtual-text")()
+					require("tool.virtual-text")()
 					return true
 				end
 			end,
