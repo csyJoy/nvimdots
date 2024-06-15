@@ -51,7 +51,8 @@ local plug_map = {
 		end)
 		:with_noremap()
 		:with_desc("flash: treesitter search"),
-	["n|<leader>so"] = map_cu("SudaWrite"):with_silent():with_noremap():with_desc("editn: Save file using sudo"),
+	["n|<leader>so"] = map_cu("SudaWrite"):with_silent():with_noremap():with_desc("sudo: Save file using sudo"),
+	["n|<leader><leader>"] = map_cu("BufferPick"):with_silent():with_noremap():with_desc("barbar: pick a buffer"),
 }
 
 return plug_map
