@@ -87,6 +87,10 @@ tool["jellydn/CopilotChat.nvim"] = {
 	},
 }
 
+tool["michaelb/sniprun"] = {
+	cond = false,
+}
+
 tool["theHamsta/nvim-dap-virtual-text"] = {
 	lazy = true,
 	init = function()
