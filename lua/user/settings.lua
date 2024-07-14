@@ -36,4 +36,13 @@ settings["dashboard_image"] = {
 	[[⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⡿⠻⣿⣿⡿⣛⣵⣿⣿⣿⣿⣿⣿⣿  ]],
 }
 
+settings["gui_config"] = {
+	font_name = "FiraCode Nerd Font",
+	font_size = 16,
+}
+
+settings["neovide_config"] = {
+	transparency = 0.7,
+}
+
 return settings
