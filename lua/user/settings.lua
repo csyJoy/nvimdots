@@ -4,7 +4,9 @@ local settings = {}
 -- Examples
 settings["use_ssh"] = true
 
-settings["colorscheme"] = "catppuccin"
+settings["colorscheme"] = "catppuccin-mocha"
+
+settings["transparent_background"] = vim.g.neovide == nil
 
 settings["dashboard_image"] = {
 	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀]],
@@ -40,7 +42,7 @@ settings["gui_config"] = {
 }
 
 settings["neovide_config"] = {
-	transparency = 0.7,
+	transparency = 0.8,
 }
 
 return settings
