@@ -1,7 +1,6 @@
 local tool = {}
 
 tool["jackMort/ChatGPT.nvim"] = {
-	dir = "/Users/csy/ChatGPT.nvim",
 	cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
 	config = require("tool.chatgpt"),
 	dependencies = {
