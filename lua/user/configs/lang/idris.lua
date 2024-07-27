@@ -1,4 +1,4 @@
 return function()
-	vim.g.maplocalleader = ";"
+	vim.g.maplocalleader = "\\"
 	require("idris2").setup({})
 end
