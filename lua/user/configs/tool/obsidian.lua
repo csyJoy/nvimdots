@@ -1,5 +1,8 @@
 return {
 	dir = "/Users/csy/Library/Mobile Documents/iCloud~md~obsidian/Documents/knowledge",
+	follow_img_func = function(img)
+		vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
+	end,
 	workspaces = {
 		{
 			name = "knowledge",
