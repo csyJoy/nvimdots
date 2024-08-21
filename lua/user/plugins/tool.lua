@@ -104,4 +104,52 @@ tool["theHamsta/nvim-dap-virtual-text"] = {
 	config = true,
 }
 
+tool["amitds1997/remote-nvim.nvim"] = {
+	cond = false,
+	version = "*", -- Pin to GitHub releases
+	dependencies = {
+		"nvim-lua/plenary.nvim", -- For standard functions
+		"MunifTanjim/nui.nvim", -- To build the plugin UI
+		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+	},
+	config = {
+		remote = {
+			copy_dirs = {
+				config = {
+					base = "/Users/csy/.config/nvim-remote",
+					dirs = "*",
+					compression = {
+						enabled = true,
+						additional_opts = { "--exclude-vcs" },
+					},
+				},
+				data = {
+					base = vim.fn.stdpath("data"), -- Path from where data has to be copied. You can choose to copy entire path or subdirectories inside using `dirs`
+					dirs = { "lazy" }, -- Directories inside `base` to copy over. If this is set to string "*"; it means entire `base` should be copied over
+					compression = {
+						enabled = true, -- Should data be compressed before uploading
+						additional_opts = { "--exclude-vcs" }, -- Any arguments that can be passed to `tar` for compression can be specified here to improve your compression
+					},
+				},
+			},
+		},
+		client_callback = function(port, workspace_config)
+			local cmd = ("wezterm cli set-tab-title --pane-id $(wezterm cli spawn nvim --server localhost:%s --remote-ui) %s"):format(
+				port,
+				("'Remote: %s'"):format(workspace_config.host)
+			)
+			if vim.env.TERM == "xterm-kitty" then
+				cmd = ("kitty -e nvim --server localhost:%s --remote-ui"):format(port)
+			end
+			vim.fn.jobstart(cmd, {
+				detach = true,
+				on_exit = function(job_id, exit_code, event_type)
+					-- This function will be called when the job exits
+					print("Client", job_id, "exited with code", exit_code, "Event type:", event_type)
+				end,
+			})
+		end,
+	},
+}
+
 return tool
