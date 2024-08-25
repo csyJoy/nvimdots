@@ -51,10 +51,26 @@ tool["epwalsh/obsidian.nvim"] = {
 	opts = require("tool.obsidian"),
 }
 
-tool["folke/neodev.nvim"] = {
+tool["folke/lazydev.nvim"] = {
+	ft = "lua", -- only load on lua files
+	opts = {
+		library = {
+			-- See the configuration section for more details
+			-- Load luvit types when the `vim.uv` word is found
+			"lazy.nvim",
+			{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			"LazyVim",
+			{ path = "wezterm-types", mods = { "wezterm" } },
+		},
+	},
+}
+
+tool["Bilal2453/luvit-meta"] = {
 	lazy = true,
-	opts = {},
-	config = require("tool.neodev"),
+}
+
+tool["justinsgithub/wezterm-types"] = {
+	lazy = true,
 }
 
 tool["mrjones2014/smart-splits.nvim"] = {}
