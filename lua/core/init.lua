@@ -108,6 +108,8 @@ local load_core = function()
 	require("core.event")
 	require("core.pack")
 	require("keymap")
+	vim.opt.fileencodings =
+		"utf-8,gbk,gb2312,gb18030,big5,euc-jp,ucs-bom,utf-16,utf-16le,utf-16be,utf-32,utf-32le,utf-32be"
 
 	vim.api.nvim_set_option_value("background", settings.background, {})
 	vim.cmd.colorscheme(settings.colorscheme)
