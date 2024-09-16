@@ -2,6 +2,7 @@ local editor = {}
 
 editor["max397574/better-escape.nvim"] = {
 	lazy = true,
+	tag = "v1.0.0",
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("user.configs.editor.better-escape"),
 }
