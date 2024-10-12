@@ -91,7 +91,7 @@ tool["CopilotC-Nvim/CopilotChat.nvim"] = {
 	},
 	build = "make tiktoken", -- Only on MacOS or Linux
 	opts = {
-		debug = true, -- Enable debugging
+		debug = false, -- Enable debugging
 		-- See Configuration section for rest
 	},
 }
