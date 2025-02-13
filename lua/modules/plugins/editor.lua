@@ -84,16 +84,11 @@ editor["tpope/vim-sleuth"] = {
 	lazy = true,
 	event = { "BufNewFile", "BufReadPost", "BufFilePost" },
 }
-editor["nvim-pack/nvim-spectre"] = {
+editor["MagicDuck/grug-far.nvim"] = {
 	lazy = true,
-	cmd = "Spectre",
+	cmd = "GrugFar",
+	config = require("editor.grug-far"),
 }
-editor["mrjones2014/smart-splits.nvim"] = {
-	lazy = true,
-	event = { "CursorHoldI", "CursorHold" },
-	config = require("editor.splits"),
-}
-
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
