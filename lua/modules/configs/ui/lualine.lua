@@ -1,3 +1,45 @@
+local lsp_state = { progress = "" }
+local spinners = { "", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "", "" }
+
+vim.api.nvim_create_autocmd("LspProgress", {
+	group = vim.api.nvim_create_augroup("LualineLspProgress", { clear = true }),
+	pattern = { "begin", "report", "end" },
+	callback = function(args)
+		-- Get the payload
+		local data = args.data and args.data.params and args.data.params.value
+		if not data then
+			return
+		end
+
+		-- If it's the end event, clear; else build "<spinner> XX% <title> <loaded>"
+		if data.kind == "end" then
+			lsp_state.progress = ""
+		else
+			local pct = data.percentage or 0
+			local idx = 1 + ((pct - pct % 10) / 10)
+			local spinner = spinners[idx]
+
+			local progress = ""
+			if data.message then
+				local start, stop = data.message:find("^%d+/%d+")
+				if start then
+					progress = data.message:sub(start, stop)
+				end
+			end
+
+			lsp_state.progress = spinner
+				.. " "
+				.. tostring(pct)
+				.. "%% "
+				.. (data.title or "")
+				.. (progress ~= "" and " " .. progress or "")
+		end
+
+		-- Redraw statusline
+		pcall(vim.cmd.redrawstatus)
+	end,
+})
+
 return function()
 	local has_catppuccin = vim.g.colors_name:find("catppuccin") ~= nil
 	local colors = require("modules.utils").get_palette()
@@ -7,6 +49,7 @@ return function()
 		git_nosep = require("modules.utils.icons").get("git"),
 		misc = require("modules.utils.icons").get("misc", true),
 		ui = require("modules.utils.icons").get("ui", true),
+		aichat = require("modules.utils.icons").get("aichat", true),
 	}
 
 	local function custom_theme()
@@ -101,7 +144,7 @@ return function()
 					local nobg = special_nobg and require("core.settings").transparent_background
 					return {
 						fg = guifg and guifg or colors.none,
-						bg = nobg and colors.none or ((not gen_bg and colors[bg]) or nil),
+						bg = nobg and colors.none or (not gen_bg and colors[bg] or nil),
 						gui = gui and gui or nil,
 					}
 				end
@@ -172,17 +215,48 @@ return function()
 					local filetypes = client.config.filetypes
 					local client_name = client.name
 					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						-- Avoid adding servers that already exists.
+						-- Avoid adding servers that already exist.
 						if not lsp_lists[client_name] then
 							lsp_lists[client_name] = true
 							table.insert(available_servers, client_name)
 						end
 					end
 				end
+
 				return next(available_servers) == nil and icons.misc.NoActiveLsp
-					or string.format("%s[%s]", icons.misc.LspAvailable, table.concat(available_servers, ", "))
+					or string.format(
+						"%s[%s] %s",
+						icons.misc.LspAvailable,
+						table.concat(available_servers, ", "),
+						lsp_state.progress
+					)
 			end,
 			color = utils.gen_hl("blue", true, true, nil, "bold"),
+			cond = conditionals.has_enough_room,
+		},
+
+		chat_progress = {
+			(function()
+				local processing = false
+				local animate_chars = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+				local animation_idx = 1
+				vim.api.nvim_create_autocmd("User", {
+					pattern = { "CodeCompanionRequestStarted", "CodeCompanionRequestFinished" },
+					group = vim.api.nvim_create_augroup("CodeCompanionHooks", { clear = true }),
+					callback = function(args)
+						processing = (args.match == "CodeCompanionRequestStarted")
+					end,
+				})
+
+				return function()
+					if not processing then
+						return ""
+					end
+					animation_idx = animation_idx % #animate_chars + 1
+					return string.format("%s %s", icons.aichat.Copilot, animate_chars[animation_idx])
+				end
+			end)(),
+			color = utils.gen_hl("yellow", true, true),
 			cond = conditionals.has_enough_room,
 		},
 
@@ -307,6 +381,7 @@ return function()
 				components.lsp,
 			},
 			lualine_x = {
+				components.chat_progress,
 				{
 					"encoding",
 					show_bomb = true,

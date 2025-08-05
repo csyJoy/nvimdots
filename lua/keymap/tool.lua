@@ -13,8 +13,15 @@ local mappings = {
 		["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 		["n|<leader>gG"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
 
+		-- Plugin: edgy
+		["n|<C-n>"] = map_callback(function()
+				require("edgy").toggle("left")
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("filetree: Toggle"),
+
 		-- Plugin: nvim-tree
-		["n|<C-n>"] = map_cu("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 		["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
 		["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
 
@@ -93,7 +100,15 @@ local mappings = {
 
 		-- Plugin: telescope
 		["n|<C-p>"] = map_callback(function()
-				_command_panel()
+				local search_backend = require("core.settings").search_backend
+				if search_backend == "fzf" then
+					local prompt_position = require("telescope.config").values.layout_config.horizontal.prompt_position
+					require("fzf-lua").keymaps({
+						fzf_opts = { ["--layout"] = prompt_position == "top" and "reverse" or "default" },
+					})
+				else
+					_command_panel()
+				end
 			end)
 			:with_noremap()
 			:with_silent()
@@ -117,8 +132,21 @@ local mappings = {
 			:with_silent()
 			:with_desc("tool: Find patterns"),
 		["v|<leader>fs"] = map_callback(function()
-				local opts = vim.fn.getcwd() == vim_path and { additional_args = { "--no-ignore" } } or {}
-				require("telescope-live-grep-args.shortcuts").grep_visual_selection(opts)
+				local search_backend = require("core.settings").search_backend
+				if search_backend == "fzf" then
+					local default_opts = "--column --line-number --no-heading --color=always --smart-case"
+					local opts = vim.fn.getcwd() == vim_path
+							and default_opts .. " --no-ignore --hidden --glob '!.git/*'"
+						or ""
+					local text = require("fzf-lua.utils").get_visual_selection()
+					require("fzf-lua").grep_project({
+						search = text,
+						rg_opts = opts,
+					})
+				else
+					local opts = vim.fn.getcwd() == vim_path and { additional_args = { "--no-ignore" } } or {}
+					require("telescope-live-grep-args.shortcuts").grep_visual_selection(opts)
+				end
 			end)
 			:with_noremap()
 			:with_silent()
@@ -141,6 +169,19 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("tool: Miscellaneous"),
+		["n|<leader>fr"] = map_cr("Telescope resume")
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Resume last search"),
+		["n|<leader>fR"] = map_callback(function()
+				local search_backend = require("core.settings").search_backend
+				if search_backend == "fzf" then
+					require("fzf-lua").resume()
+				end
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Resume last search"),
 
 		-- Plugin: dap
 		["n|<F6>"] = map_callback(function()
@@ -203,6 +244,28 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("debug: Open REPL"),
+
+		--- Plugin: CodeCompanion and edgy
+		["n|<leader>cs"] = map_callback(function()
+				_select_chat_model()
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Select Chat Model"),
+		["nv|<leader>cc"] = map_callback(function()
+				require("edgy").toggle("right")
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Toggle CodeCompanion"),
+		["nv|<leader>ck"] = map_cr("CodeCompanionActions")
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: CodeCompanion Actions"),
+		["v|<leader>ca"] = map_cr("CodeCompanionChat Add")
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Add selection to CodeCompanion Chat"),
 	},
 }
 
