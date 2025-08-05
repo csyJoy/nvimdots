@@ -22,6 +22,7 @@ return function()
 				["gitcommit"] = false,
 				["log"] = false,
 				["toggleterm"] = false,
+				["zsh"] = false,
 			},
 		})
 	end, 100)
