@@ -12,7 +12,7 @@ return function()
 		},
 		strategies = {
 			chat = {
-				adapter = "openrouter",
+				adapter = "qwen",
 				roles = {
 					llm = function(adapter)
 						return icons.aichat.Copilot .. "CodeCompanion (" .. adapter.formatted_name .. ")"
@@ -31,7 +31,7 @@ return function()
 				},
 			},
 			inline = {
-				adapter = "openrouter",
+				adapter = "siliconflow_v3",
 			},
 		},
 		adapters = {
@@ -49,6 +49,55 @@ return function()
 					},
 				})
 			end,
+			siliconflow_r1 = function()
+				return require("codecompanion.adapters").extend("deepseek", {
+					name = "siliconflow_r1",
+					-- url = "https://api.deepseek.com/chat/completions",
+					env = {
+						api_key = "sk-71236000cd0e41fd9e0c1f9e53825598",
+					},
+					schema = {
+						model = {
+							default = "deepseek-reasoner",
+						},
+					},
+				})
+			end,
+
+			siliconflow_v3 = function()
+				return require("codecompanion.adapters").extend("deepseek", {
+					name = "siliconflow_v3",
+					-- url = "https://api.deepseek.com/chat/completions",
+					env = {
+						api_key = "sk-71236000cd0e41fd9e0c1f9e53825598",
+					},
+					schema = {
+						model = {
+							default = "deepseek-chat",
+						},
+					},
+				})
+			end,
+			qwen = function()
+				return require("codecompanion.adapters").extend("openai_compatible", {
+					name = "qwen",
+					env = {
+						url = "https://api.siliconflow.cn",
+						api_key = os.getenv("DEEPSEEK_API_KEY_S"),
+						chat_url = "/v1/chat/completions",
+					},
+					schema = {
+						model = {
+							default = "Qwen/Qwen3-30B-A3B",
+							choices = {
+								["Qwen/Qwen3-30B-A3B"] = {
+									opts = { can_reason = false, can_use_tools = true },
+								},
+							},
+						},
+					},
+				})
+			end,
 		},
 		display = {
 			diff = {
@@ -56,14 +105,14 @@ return function()
 				close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
 				layout = "vertical", -- vertical|horizontal split for default provider
 				opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-				provider = "default", -- default|mini_diff
+				provider = "inline", -- default|mini_diff
 			},
 			chat = {
 				window = {
 					layout = "vertical", -- float|vertical|horizontal|buffer
 					position = "right", -- left|right|top|bottom (nil will default depending on vim.opt.plitright|vim.opt.splitbelow)
 					border = "single",
-					width = 0.25,
+					width = 0.35,
 					relative = "editor",
 					full_height = true, -- when set to false, vsplit will be used to open the chat buffer vs. botright/topleft vsplit
 				},

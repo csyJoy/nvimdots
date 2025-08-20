@@ -45,4 +45,6 @@ settings["neovide_config"] = {
 	transparency = 0.8,
 }
 
+settings["chat_lang"] = "Chinese"
+
 return settings
