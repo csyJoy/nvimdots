@@ -1,15 +1,5 @@
 local tool = {}
 
-tool["jackMort/ChatGPT.nvim"] = {
-	cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTEditWithInstructions" },
-	config = require("tool.chatgpt"),
-	dependencies = {
-		"MunifTanjim/nui.nvim",
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
-	},
-}
-
 tool["ThePrimeagen/refactoring.nvim"] = {
 	event = "LspAttach",
 	dependencies = {
