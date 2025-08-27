@@ -157,7 +157,7 @@ tool["amitds1997/remote-nvim.nvim"] = {
 tool["coder/claudecode.nvim"] = {
 	dependencies = { "folke/snacks.nvim" },
 	opts = {
-		terminal_cmd = "ccr code",
+		terminal_cmd = "claude",
 	},
 	config = true,
 	keys = {
