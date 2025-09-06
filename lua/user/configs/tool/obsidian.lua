@@ -1,7 +1,7 @@
 return {
 	dir = "/Users/csy/Library/Mobile Documents/iCloud~md~obsidian/Documents/knowledge",
 	follow_img_func = function(img)
-		vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
+		vim.fn.jobstart({ "qlmanage", "-p", "assets/" .. img }) -- Mac OS quick look preview
 	end,
 	workspaces = {
 		{
@@ -28,7 +28,7 @@ return {
 		subdir = "template",
 	},
 	attachments = {
-		img_folder = ".",
+		img_folder = "assets",
 		img_text_func = function(client, path)
 			local link_path
 			local vault_relative_path = client:vault_relative_path(path)
