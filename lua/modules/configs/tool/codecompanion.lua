@@ -35,69 +35,22 @@ return function()
 			},
 		},
 		adapters = {
-			openrouter = function()
-				return require("codecompanion.adapters").extend("openai_compatible", {
-					env = {
-						url = "https://openrouter.ai/api",
-						api_key = secret_key,
-						chat_url = "/v1/chat/completions",
-					},
-					schema = {
-						model = {
-							default = vim.g.current_chat_model,
+			http = {
+				openrouter = function()
+					return require("codecompanion.adapters").extend("openai_compatible", {
+						env = {
+							url = "https://openrouter.ai/api",
+							api_key = secret_key,
+							chat_url = "/v1/chat/completions",
 						},
-					},
-				})
-			end,
-			siliconflow_r1 = function()
-				return require("codecompanion.adapters").extend("deepseek", {
-					name = "siliconflow_r1",
-					-- url = "https://api.deepseek.com/chat/completions",
-					env = {
-						api_key = "sk-71236000cd0e41fd9e0c1f9e53825598",
-					},
-					schema = {
-						model = {
-							default = "deepseek-reasoner",
-						},
-					},
-				})
-			end,
-
-			siliconflow_v3 = function()
-				return require("codecompanion.adapters").extend("deepseek", {
-					name = "siliconflow_v3",
-					-- url = "https://api.deepseek.com/chat/completions",
-					env = {
-						api_key = "sk-71236000cd0e41fd9e0c1f9e53825598",
-					},
-					schema = {
-						model = {
-							default = "deepseek-chat",
-						},
-					},
-				})
-			end,
-			qwen = function()
-				return require("codecompanion.adapters").extend("openai_compatible", {
-					name = "qwen",
-					env = {
-						url = "https://api.siliconflow.cn",
-						api_key = os.getenv("DEEPSEEK_API_KEY_S"),
-						chat_url = "/v1/chat/completions",
-					},
-					schema = {
-						model = {
-							default = "Qwen/Qwen3-30B-A3B",
-							choices = {
-								["Qwen/Qwen3-30B-A3B"] = {
-									opts = { can_reason = false, can_use_tools = true },
-								},
+						schema = {
+							model = {
+								default = vim.g.current_chat_model,
 							},
 						},
-					},
-				})
-			end,
+					})
+				end,
+			},
 		},
 		display = {
 			diff = {
