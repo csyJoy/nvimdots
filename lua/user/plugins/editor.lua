@@ -15,6 +15,7 @@ editor["kylechui/nvim-surround"] = {
 
 editor["nvim-focus/focus.nvim"] = {
 	version = false,
+	enabled = false,
 	config = require("editor.focus"),
 }
 

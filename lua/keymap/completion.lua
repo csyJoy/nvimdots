@@ -38,11 +38,11 @@ function M.lsp(buf)
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Toggle outline in Telescope"),
-		["n|g["] = map_cr("Lspsaga diagnostic_jump_prev")
+		["n|gE"] = map_cr("Lspsaga diagnostic_jump_prev")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Prev diagnostic"),
-		["n|g]"] = map_cr("Lspsaga diagnostic_jump_next")
+		["n|ge"] = map_cr("Lspsaga diagnostic_jump_next")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Next diagnostic"),
@@ -63,14 +63,14 @@ function M.lsp(buf)
 			:with_buffer(buf)
 			:with_desc("lsp: Rename in project range"),
 		["n|K"] = map_cr("Lspsaga hover_doc"):with_silent():with_buffer(buf):with_desc("lsp: Show doc"),
-		["nv|ga"] = map_cr("Lspsaga code_action")
+		["nv|<leader>ca"] = map_cr("Lspsaga code_action")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Code action for cursor"),
 		["n|gd"] = map_cr("Glance definitions"):with_silent():with_buffer(buf):with_desc("lsp: Preview definition"),
 		["n|gD"] = map_cr("Lspsaga goto_definition"):with_silent():with_buffer(buf):with_desc("lsp: Goto definition"),
-		["n|gh"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
-		["n|gm"] = map_cr("Glance implementations")
+		["n|gu"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
+		["n|gi"] = map_cr("Glance implementations")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Show implementation"),
