@@ -42,7 +42,7 @@ settings["gui_config"] = {
 }
 
 settings["neovide_config"] = {
-	transparency = 0.8,
+	opacity = 0.8,
 }
 
 settings["chat_lang"] = "Chinese"
