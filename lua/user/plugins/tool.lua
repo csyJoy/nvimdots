@@ -74,6 +74,7 @@ tool["demo"] = {
 }
 
 tool["CopilotC-Nvim/CopilotChat.nvim"] = {
+	cond = false,
 	branch = "main",
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim

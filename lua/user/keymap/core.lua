@@ -54,30 +54,30 @@ local plug_map = {
 		:with_silent()
 		:with_noremap()
 		:with_desc("window: Focus Down"),
-	["n|<C-S-h>"] = map_callback(function()
-			require("smart-splits").resize_left()
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("window: Focus Left"),
-	["n|<C-S-l>"] = map_callback(function()
-			require("smart-splits").resize_right()
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("window: Focus Right"),
-	["n|<C-S-k>"] = map_callback(function()
-			require("smart-splits").resize_up()
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("window: Focus Up"),
-	["n|<C-S-j>"] = map_callback(function()
-			require("smart-splits").resize_down()
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("window: Focus Down"),
+	-- ["n|<C-S-h>"] = map_callback(function()
+	-- 		require("smart-splits").resize_left()
+	-- 	end)
+	-- 	:with_silent()
+	-- 	:with_noremap()
+	-- 	:with_desc("window: Focus Left"),
+	-- ["n|<C-S-l>"] = map_callback(function()
+	-- 		require("smart-splits").resize_right()
+	-- 	end)
+	-- 	:with_silent()
+	-- 	:with_noremap()
+	-- 	:with_desc("window: Focus Right"),
+	-- ["n|<C-S-k>"] = map_callback(function()
+	-- 		require("smart-splits").resize_up()
+	-- 	end)
+	-- 	:with_silent()
+	-- 	:with_noremap()
+	-- 	:with_desc("window: Focus Up"),
+	-- ["n|<C-S-j>"] = map_callback(function()
+	-- 		require("smart-splits").resize_down()
+	-- 	end)
+	-- 	:with_silent()
+	-- 	:with_noremap()
+	-- 	:with_desc("window: Focus Down"),
 	["n|<C-q>"] = map_cmd(":wq<CR>"):with_desc("editn: Save file and quit"),
 	["n|<A-S-q>"] = map_cmd(":q!<CR>"):with_desc("editn: Force quit"),
 	["n|<leader>sp"] = map_cr("setlocal spell! spelllang=en_us"):with_desc("editn: Toggle spell check"),

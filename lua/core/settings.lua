@@ -121,6 +121,7 @@ settings["lsp_deps"] = {
 	"lua_ls",
 	"pylsp",
 	"gopls",
+	"hls",
 }
 
 -- General-purpose sources for none-ls to install during bootstrap.
