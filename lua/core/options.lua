@@ -133,4 +133,6 @@ end
 -- Newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
 vim.g.netrw_liststyle = 3
 
+vim.g.project_lsp_nowarn = 1
+
 load_options()

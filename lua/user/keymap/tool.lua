@@ -6,7 +6,6 @@ local map_callback = bind.map_callback
 require("keymap.helpers")
 
 local plug_map = {
-	["n|<leader>nt"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["n|<leader>ft"] = map_cr("ToggleTerm direction=float")
 		:with_noremap()
 		:with_silent()

@@ -14,7 +14,7 @@ local mappings = {
 		["n|<leader>gG"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
 
 		-- Plugin: edgy
-		["n|<C-n>"] = map_callback(function()
+		["n|<leader>nt"] = map_callback(function()
 				require("edgy").toggle("left")
 			end)
 			:with_noremap()
