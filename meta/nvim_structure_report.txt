@@ -1,0 +1,312 @@
+NEOVIM LUA CONFIGURATION STRUCTURE ANALYSIS
+============================================
+
+Total Lua Files: 135 files
+
+DIRECTORY STRUCTURE:
+====================
+
+/Users/csy/.config/nvim/lua/
+│
+├── core/                          [CORE CONFIGURATION - 6 files]
+│   ├── init.lua                   - Main core initialization (loads options, events, pack.lua, keymap)
+│   ├── global.lua                 - Global variables (paths, OS detection, home directory)
+│   ├── settings.lua               - Global settings (plugin configs, LSP servers, formatters, DAP)
+│   ├── options.lua                - Neovim option defaults
+│   ├── event.lua                  - Autocmd event configurations
+│   └── pack.lua                   - Lazy.nvim plugin manager setup and configuration
+│
+├── keymap/                        [KEYBINDING CONFIGURATION - 8 files]
+│   ├── init.lua                   - Main keymap loader (entry point)
+│   ├── bind.lua                   - Keybinding helper functions and class definitions
+│   ├── helpers.lua                - Additional keymap helpers
+│   ├── completion.lua             - LSP and completion related keybindings
+│   ├── editor.lua                 - Editor action keybindings
+│   ├── lang.lua                   - Language-specific keybindings
+│   ├── tool.lua                   - Development tool keybindings
+│   └── ui.lua                     - UI/appearance keybindings
+│
+├── modules/                       [PLUGIN CONFIGURATIONS - 96 files]
+│   │
+│   ├── plugins/                   [PLUGIN SPECIFICATIONS - 5 files]
+│   │   ├── completion.lua         - LSP, cmp, copilot, formatting, linting configs
+│   │   ├── editor.lua             - Text editing, navigation, git, treesitter plugins
+│   │   ├── lang.lua               - Language-specific plugin specs (Rust, Go, Markdown, etc)
+│   │   ├── tool.lua               - Development tools (DAP, search, terminals, etc)
+│   │   └── ui.lua                 - UI plugins (theme, status line, bufferline, etc)
+│   │
+│   ├── configs/                   [PLUGIN CONFIGURATIONS - 81 files]
+│   │   │
+│   │   ├── completion/            [LSP & COMPLETION - 29 files]
+│   │   │   ├── lsp.lua            - LSP configuration and setup
+│   │   │   ├── cmp.lua            - Autocompletion engine (nvim-cmp)
+│   │   │   ├── lspsaga.lua        - Enhanced LSP UI (code actions, definitions, etc)
+│   │   │   ├── glance.nvim        - Quick preview window for definitions/references
+│   │   │   ├── lsp-signature.lua  - Function signature hints
+│   │   │   ├── copilot.lua        - GitHub Copilot AI code completion
+│   │   │   ├── copilot-cmp.lua    - Copilot integration with nvim-cmp
+│   │   │   ├── luasnip.lua        - Snippet engine configuration
+│   │   │   ├── null-ls.lua        - External tools integration (diagnostics, formatting)
+│   │   │   ├── formatting.lua     - Code formatting configuration
+│   │   │   ├── mason.lua          - LSP/DAP/formatter installer
+│   │   │   ├── mason-lspconfig.lua- Mason & lspconfig integration
+│   │   │   ├── mason-null-ls.lua  - Mason & null-ls integration
+│   │   │   ├── neoconf.lua        - Per-project LSP configuration
+│   │   │   ├── tiny-inline-diagnostic.lua - Inline diagnostics display
+│   │   │   ├── formatters/        - Custom formatter configs
+│   │   │   │   └── clang_format.lua
+│   │   │   └── servers/           - Individual LSP server configs
+│   │   │       ├── bashls.lua
+│   │   │       ├── clangd.lua
+│   │   │       ├── dartls.lua
+│   │   │       ├── gopls.lua
+│   │   │       ├── hls.lua
+│   │   │       ├── html.lua
+│   │   │       ├── jsonls.lua
+│   │   │       ├── lua_ls.lua
+│   │   │       └── pylsp.lua
+│   │   │
+│   │   ├── editor/                [TEXT EDITING & NAVIGATION - 30 files]
+│   │   │   ├── treesitter.lua     - Syntax parsing and highlighting
+│   │   │   ├── flash.nvim         - Enhanced motion/search with visual feedback
+│   │   │   ├── hop.lua            - Quick navigation by searching characters
+│   │   │   ├── comment.lua        - Smart code commenting
+│   │   │   ├── autotag.lua        - Auto-close HTML/XML tags
+│   │   │   ├── autoclose.lua      - Auto-close brackets, quotes, etc
+│   │   │   ├── align.lua          - Text alignment by patterns
+│   │   │   ├── diffview.lua       - Git diff viewer
+│   │   │   ├── grug-far.lua       - Find and replace UI
+│   │   │   ├── cursorword.lua     - Highlight word under cursor
+│   │   │   ├── matchup.lua        - Better bracket matching
+│   │   │   ├── rainbow_delims.lua - Rainbow-colored delimiters
+│   │   │   ├── persisted.lua      - Session management
+│   │   │   ├── suda.lua           - Edit with sudo privileges
+│   │   │   ├── faster.lua         - Large file optimization
+│   │   │   ├── highlight-colors.lua - Color value visualization
+│   │   │   ├── ts-context.lua     - Show code context via treesitter
+│   │   │   └── ts-context-commentstring.lua - Smart comment strings
+│   │   │
+│   │   ├── lang/                  [LANGUAGE-SPECIFIC - 6 files]
+│   │   │   ├── rust.lua           - Rust development (cargo, racer, etc)
+│   │   │   ├── go.lua             - Go development configuration
+│   │   │   ├── crates.lua         - Rust crates management
+│   │   │   ├── crates-keymap.lua  - Crates.io integration keybindings
+│   │   │   ├── bqf.lua            - Better quickfix buffer
+│   │   │   └── render-markdown.lua- Markdown rendering
+│   │   │
+│   │   ├── tool/                  [DEVELOPMENT TOOLS - 17 files]
+│   │   │   ├── fzf-lua.lua        - Fuzzy finder (fzf backend)
+│   │   │   ├── telescope.lua      - Fuzzy finder (telescope backend)
+│   │   │   ├── nvim-tree.lua      - File tree explorer
+│   │   │   ├── project.lua        - Project management
+│   │   │   ├── toggleterm.lua     - Floating terminal
+│   │   │   ├── which-key.lua      - Keybinding help menu
+│   │   │   ├── wilder.lua         - Command line completion
+│   │   │   ├── smartyank.lua      - Smart clipboard management
+│   │   │   ├── sniprun.lua        - Code snippet runner
+│   │   │   ├── search.lua         - Search integration
+│   │   │   ├── trouble.lua        - Diagnostics/quickfix list UI
+│   │   │   ├── dropbar.lua        - Breadcrumb navigation
+│   │   │   ├── codecompanion.lua  - AI code companion
+│   │   │   ├── fcitx5.lua         - Input method switching
+│   │   │   ├── dap/               - Debugger (Debug Adapter Protocol)
+│   │   │   │   ├── init.lua       - DAP core setup
+│   │   │   │   ├── dapui.lua      - DAP UI
+│   │   │   │   ├── dap-keymap.lua - DAP keybindings
+│   │   │   │   └── clients/       - DAP adapter configs
+│   │   │   │       ├── codelldb.lua - C/C++ debugger
+│   │   │   │       ├── delve.lua  - Go debugger
+│   │   │   │       ├── lldb.lua   - LLDB debugger
+│   │   │   │       └── python.lua - Python debugger
+│   │   │
+│   │   └── ui/                    [UI & APPEARANCE - 11 files]
+│   │       ├── catppuccin.lua     - Catppuccin theme configuration
+│   │       ├── bufferline.lua     - Buffer tabs bar
+│   │       ├── lualine.lua        - Status line
+│   │       ├── alpha.lua          - Dashboard/startup screen
+│   │       ├── indent-blankline.lua - Indentation guides
+│   │       ├── gitsigns.lua       - Git signs (status, diff, blame)
+│   │       ├── notify.lua         - Notification UI
+│   │       ├── neoscroll.lua      - Smooth scrolling
+│   │       ├── scrollview.lua     - Visual scrollbar
+│   │       ├── paint.lua          - Color/highlight painting
+│   │       ├── edgy.lua           - Window layout manager
+│   │       └── splits.lua         - Split window management
+│   │
+│   └── utils/                     [UTILITY FUNCTIONS - 4 files]
+│       ├── init.lua               - Main utilities (palette, highlight groups, plugin loading)
+│       ├── icons.lua              - Icon definitions and helpers
+│       ├── keymap.lua             - Keymap helper functions
+│       └── dap.lua                - DAP-related utilities
+│
+└── user/                          [USER CUSTOMIZATIONS - 25 files]
+    ├── keymap/                    [USER KEYBINDINGS - 8 files]
+    │   ├── init.lua               - User keymap entry point
+    │   ├── core.lua               - Core keybindings overrides
+    │   ├── completion.lua         - Completion keybindings overrides
+    │   ├── editor.lua             - Editor keybindings overrides
+    │   ├── lang.lua               - Language keybindings overrides
+    │   ├── tool.lua               - Tool keybindings overrides
+    │   └── ui.lua                 - UI keybindings overrides
+    │
+    ├── plugins/                   [USER PLUGIN SPECS - 4 files]
+    │   ├── completion.lua         - Custom completion plugins
+    │   ├── editor.lua             - Custom editor plugins
+    │   ├── lang.lua               - Custom language plugins
+    │   └── tool.lua               - Custom tool plugins
+    │
+    ├── configs/                   [USER PLUGIN CONFIGS - 13 files]
+    │   ├── completion/
+    │   │   └── null-ls.lua        - Custom linting/formatting setup
+    │   ├── dap-clients/           - Custom DAP client configs
+    │   ├── editor/
+    │   │   ├── align.lua
+    │   │   ├── better-escape.lua
+    │   │   ├── flash.lua
+    │   │   ├── focus.lua
+    │   │   ├── nvim-surround.lua
+    │   │   └── todo-comments.lua
+    │   ├── formatters/            - Custom formatter configs
+    │   ├── lang/
+    │   │   ├── idris.lua
+    │   │   └── vim-tex.lua
+    │   ├── lsp-servers/           - Custom LSP server configs
+    │   ├── tool/
+    │   │   ├── chatgpt.lua
+    │   │   ├── neodev.lua
+    │   │   ├── obsidian.lua
+    │   │   ├── refactoring.lua
+    │   │   └── virtual-text.lua
+    │   └── ui/
+    │       └── indent-blankline.lua
+    │
+    ├── settings.lua               - User-specific settings overrides
+    ├── options.lua                - User-specific options overrides
+    ├── event.lua                  - User-specific autocmd events
+    └── keymap/
+        └── init.lua               - User keymap entry point
+
+
+KEY DIRECTORY PURPOSES:
+=======================
+
+1. CORE (6 files)
+   - Foundation configuration that must load first
+   - Global paths, OS detection, plugin manager setup
+   - Main entry point for core initialization
+   - Settings that affect the entire system
+
+2. KEYMAP (8 files)
+   - All keybindings organized by category
+   - Helpers for creating consistent key mappings
+   - User can override keybindings in user/keymap/
+
+3. MODULES/PLUGINS (5 files)
+   - Plugin specifications organized by category
+   - Defines which plugins are loaded and their conditions
+   - Links to actual plugin configurations
+
+4. MODULES/CONFIGS (81 files)
+   - Individual plugin configuration files
+   - Organized into 5 categories: completion, editor, lang, tool, ui
+   - Each plugin has its own dedicated config file
+   - Language-specific configs in lang/
+   - Debugger configs in tool/dap/
+
+5. MODULES/UTILS (4 files)
+   - Shared utility functions
+   - Palette management and highlighting
+   - Icon definitions
+   - Plugin loading helpers
+
+6. USER (25 files)
+   - User-specific customizations
+   - Can override default configs without modifying core files
+   - Mirrors core structure for easy override
+   - Used for personal plugins and settings
+
+
+PRIMARY CONFIG FILES NEEDING COMMENTS:
+======================================
+
+HIGHEST PRIORITY (Core System Files):
+1. /Users/csy/.config/nvim/lua/core/init.lua
+   - Main initialization, loads all core components
+   - Platform detection and configuration
+   
+2. /Users/csy/.config/nvim/lua/core/pack.lua
+   - Lazy.nvim plugin manager configuration
+   - Plugin loading and caching strategy
+   
+3. /Users/csy/.config/nvim/lua/core/settings.lua
+   - Global configuration variables
+   - LSP, formatter, and DAP server specifications
+   - Theme and GUI settings
+
+4. /Users/csy/.config/nvim/lua/core/global.lua
+   - Global path and OS variables
+   - Home directory and config paths
+
+HIGH PRIORITY (Keybinding & Plugin Management):
+5. /Users/csy/.config/nvim/lua/keymap/init.lua
+   - Main keymap loader and orchestrator
+   
+6. /Users/csy/.config/nvim/lua/keymap/bind.lua
+   - Keybinding helper class definitions
+   - Map creation functions and chainable API
+   
+7. /Users/csy/.config/nvim/lua/modules/plugins/*.lua (5 files)
+   - Plugin specifications for all categories
+   - Each file organizes plugins by functional group
+
+MEDIUM PRIORITY (Module Systems):
+8. /Users/csy/.config/nvim/lua/modules/utils/init.lua
+   - Utility function definitions
+   - Palette management
+   - Plugin loading framework
+   
+9. /Users/csy/.config/nvim/lua/modules/configs/completion/lsp.lua
+   - Core LSP configuration
+   - Server attachment and capabilities setup
+
+10. /Users/csy/.config/nvim/lua/modules/configs/editor/treesitter.lua
+    - Treesitter parser setup and configuration
+    - Syntax highlighting core
+
+
+FILE CATEGORIES BY FUNCTION:
+============================
+
+INITIALIZATION/BOOTSTRAP:
+- core/init.lua, core/global.lua, core/options.lua, core/pack.lua
+
+CONFIGURATION:
+- core/settings.lua, core/event.lua
+
+KEYBINDING SYSTEM:
+- keymap/init.lua, keymap/bind.lua, keymap/helpers.lua
+- keymap/{completion, editor, lang, tool, ui}.lua
+
+PLUGIN SPECIFICATIONS:
+- modules/plugins/{completion, editor, lang, tool, ui}.lua
+
+PLUGIN CONFIGURATIONS:
+- 81 config files in modules/configs/
+
+UTILITIES:
+- modules/utils/{init, icons, keymap, dap}.lua
+
+USER CUSTOMIZATION:
+- 25 files in user/ directory mirroring structure
+
+
+NOTES FOR DOCUMENTATION:
+=========================
+
+1. The configuration uses a modular architecture with lazy loading for performance
+2. User customizations should go in lua/user/ to maintain clean git history
+3. Plugin configs use a helper system (load_plugin) for easy user overrides
+4. Most config files include Chinese comments explaining plugin purpose
+5. Settings can be extended via user/settings.lua without modifying core files
+6. Keybindings are chainable (builder pattern) for readable configuration
+7. The system supports multiple platforms (Linux, macOS, Windows, WSL)

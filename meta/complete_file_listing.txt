@@ -1,0 +1,224 @@
+COMPLETE FILE LISTING - ALL 135 LUA FILES
+==========================================
+
+CORE CONFIGURATION (6 files)
+────────────────────────────
+/Users/csy/.config/nvim/lua/core/
+  init.lua                   - Loads all core modules
+  global.lua                 - Platform detection and paths
+  settings.lua               - Central configuration repository
+  options.lua                - Neovim option defaults
+  event.lua                  - Autocmd setup
+  pack.lua                   - Lazy.nvim plugin manager
+
+KEYBINDINGS (8 files)
+────────────────────
+/Users/csy/.config/nvim/lua/keymap/
+  init.lua                   - Loads all keymap modules
+  bind.lua                   - Keybinding helper class
+  helpers.lua                - Additional helpers
+  completion.lua             - LSP/completion keys
+  editor.lua                 - Text editing keys
+  lang.lua                   - Language-specific keys
+  tool.lua                   - Development tool keys
+  ui.lua                     - UI/theme keys
+
+PLUGIN SPECIFICATIONS (5 files)
+───────────────────────────────
+/Users/csy/.config/nvim/lua/modules/plugins/
+  completion.lua             - LSP, autocompletion, formatting
+  editor.lua                 - Text editing, navigation, git
+  lang.lua                   - Language-specific plugins
+  tool.lua                   - Dev tools, debugging, search
+  ui.lua                     - UI, themes, status line
+
+COMPLETION CONFIGS (29 files)
+─────────────────────────────
+/Users/csy/.config/nvim/lua/modules/configs/completion/
+  lsp.lua                    - LSP core setup
+  cmp.lua                    - nvim-cmp autocompletion
+  lspsaga.lua                - Enhanced LSP UI
+  glance.lua                 - Definition preview
+  lsp-signature.lua          - Signature hints
+  copilot.lua                - GitHub Copilot
+  copilot-cmp.lua            - Copilot+cmp integration
+  luasnip.lua                - Snippet engine
+  null-ls.lua                - External tools integration
+  formatting.lua             - Code formatting
+  mason.lua                  - Package installer
+  mason-lspconfig.lua        - Mason+LSP integration
+  mason-null-ls.lua          - Mason+null-ls integration
+  neoconf.lua                - Project-specific LSP config
+  tiny-inline-diagnostic.lua - Inline diagnostics
+  formatters/
+    clang_format.lua         - C/C++ formatter config
+  servers/
+    bashls.lua               - Bash language server
+    clangd.lua               - C/C++ language server
+    dartls.lua               - Dart language server
+    gopls.lua                - Go language server
+    hls.lua                  - Haskell language server
+    html.lua                 - HTML language server
+    jsonls.lua               - JSON language server
+    lua_ls.lua               - Lua language server
+    pylsp.lua                - Python language server
+
+EDITOR CONFIGS (30 files)
+─────────────────────────
+/Users/csy/.config/nvim/lua/modules/configs/editor/
+  treesitter.lua             - Syntax parsing
+  flash.lua                  - Motion/search enhancement
+  hop.lua                    - Character-based navigation
+  comment.lua                - Smart commenting
+  autotag.lua                - HTML/XML auto-close
+  autoclose.lua              - Bracket/quote auto-close
+  align.lua                  - Text alignment
+  diffview.lua               - Git diff viewer
+  grug-far.lua               - Find/replace UI
+  cursorword.lua             - Cursor word highlight
+  matchup.lua                - Bracket matching
+  rainbow_delims.lua         - Rainbow delimiters
+  persisted.lua              - Session management
+  suda.lua                   - Sudo file editing
+  faster.lua                 - Large file optimization
+  highlight-colors.lua       - Color visualization
+  ts-context.lua             - Context display
+  ts-context-commentstring.lua - Smart comment strings
+
+LANGUAGE CONFIGS (6 files)
+──────────────────────────
+/Users/csy/.config/nvim/lua/modules/configs/lang/
+  rust.lua                   - Rust development
+  go.lua                     - Go development
+  crates.lua                 - Rust crates management
+  crates-keymap.lua          - Crates keybindings
+  bqf.lua                    - Better quickfix
+  render-markdown.lua        - Markdown rendering
+
+TOOL CONFIGS (17 files)
+───────────────────────
+/Users/csy/.config/nvim/lua/modules/configs/tool/
+  fzf-lua.lua                - FZF finder
+  telescope.lua              - Telescope finder
+  nvim-tree.lua              - File tree
+  project.lua                - Project management
+  toggleterm.lua             - Terminal plugin
+  which-key.lua              - Keybinding help
+  wilder.lua                 - Command completion
+  smartyank.lua              - Smart clipboard
+  sniprun.lua                - Code runner
+  search.lua                 - Search integration
+  trouble.lua                - Diagnostics UI
+  dropbar.lua                - Breadcrumbs
+  codecompanion.lua          - AI companion
+  fcitx5.lua                 - Input method
+  dap/
+    init.lua                 - DAP setup
+    dapui.lua                - DAP UI
+    dap-keymap.lua           - DAP keybindings
+    clients/
+      codelldb.lua           - C/C++ debugger
+      delve.lua              - Go debugger
+      lldb.lua               - LLDB debugger
+      python.lua             - Python debugger
+
+UI CONFIGS (11 files)
+─────────────────────
+/Users/csy/.config/nvim/lua/modules/configs/ui/
+  catppuccin.lua             - Theme setup
+  bufferline.lua             - Buffer tabs
+  lualine.lua                - Status line
+  alpha.lua                  - Dashboard
+  indent-blankline.lua       - Indentation guides
+  gitsigns.lua               - Git signs
+  notify.lua                 - Notifications
+  neoscroll.lua              - Smooth scroll
+  scrollview.lua             - Scrollbar
+  paint.lua                  - Color painting
+  edgy.lua                   - Window layout
+  splits.lua                 - Split management
+
+UTILITIES (4 files)
+───────────────────
+/Users/csy/.config/nvim/lua/modules/utils/
+  init.lua                   - Main utilities & helpers
+  icons.lua                  - Icon definitions
+  keymap.lua                 - Keymap functions
+  dap.lua                    - DAP utilities
+
+USER KEYBINDINGS (8 files)
+──────────────────────────
+/Users/csy/.config/nvim/lua/user/keymap/
+  init.lua                   - User keymap loader
+  core.lua                   - Core keys overrides
+  completion.lua             - Completion keys overrides
+  editor.lua                 - Editor keys overrides
+  lang.lua                   - Language keys overrides
+  tool.lua                   - Tool keys overrides
+  ui.lua                     - UI keys overrides
+
+USER PLUGINS (4 files)
+──────────────────────
+/Users/csy/.config/nvim/lua/user/plugins/
+  completion.lua             - Custom completion plugins
+  editor.lua                 - Custom editor plugins
+  lang.lua                   - Custom language plugins
+  tool.lua                   - Custom tool plugins
+
+USER CONFIGS (13 files)
+───────────────────────
+/Users/csy/.config/nvim/lua/user/configs/
+  completion/
+    null-ls.lua              - Custom linting/formatting
+  dap-clients/               - Custom DAP configs
+  editor/
+    align.lua
+    better-escape.lua
+    flash.lua
+    focus.lua
+    nvim-surround.lua
+    todo-comments.lua
+  formatters/                - Custom formatter configs
+  lang/
+    idris.lua                - Idris language config
+    vim-tex.lua              - LaTeX config
+  lsp-servers/               - Custom LSP configs
+  tool/
+    chatgpt.lua
+    neodev.lua
+    obsidian.lua
+    refactoring.lua
+    virtual-text.lua
+  ui/
+    indent-blankline.lua
+
+USER SETTINGS (3 files)
+───────────────────────
+/Users/csy/.config/nvim/lua/user/
+  settings.lua               - Settings overrides
+  options.lua                - Options overrides
+  event.lua                  - Custom events
+
+
+FILE ORGANIZATION SUMMARY
+=========================
+
+Total Files: 135
+
+By Category:
+  - Core: 6 files
+  - Keymap: 8 files
+  - Modules/Plugins: 5 files
+  - Modules/Configs: 81 files
+    - Completion: 29 files
+    - Editor: 30 files
+    - Language: 6 files
+    - Tool: 17 files (including 4 DAP client configs)
+    - UI: 11 files
+  - Modules/Utils: 4 files
+  - User Keymap: 8 files
+  - User Plugins: 4 files
+  - User Configs: 13 files
+  - User Settings: 3 files
+
+Total Subdirectories: 30+

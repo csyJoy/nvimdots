@@ -1,0 +1,338 @@
+NEOVIM LUA CONFIGURATION - QUICK REFERENCE GUIDE
+================================================
+
+ABSOLUTE FILE PATHS (for immediate reference)
+==============================================
+
+CORE FOUNDATION (Start here when adding comments)
+├─ /Users/csy/.config/nvim/lua/core/global.lua
+├─ /Users/csy/.config/nvim/lua/core/settings.lua
+├─ /Users/csy/.config/nvim/lua/core/init.lua
+└─ /Users/csy/.config/nvim/lua/core/pack.lua
+
+KEYBINDING SYSTEM
+├─ /Users/csy/.config/nvim/lua/keymap/init.lua
+├─ /Users/csy/.config/nvim/lua/keymap/bind.lua
+└─ /Users/csy/.config/nvim/lua/keymap/helpers.lua
+
+PLUGIN SPECIFICATIONS
+├─ /Users/csy/.config/nvim/lua/modules/plugins/completion.lua
+├─ /Users/csy/.config/nvim/lua/modules/plugins/editor.lua
+├─ /Users/csy/.config/nvim/lua/modules/plugins/lang.lua
+├─ /Users/csy/.config/nvim/lua/modules/plugins/tool.lua
+└─ /Users/csy/.config/nvim/lua/modules/plugins/ui.lua
+
+COMPLETION CONFIGS
+└─ /Users/csy/.config/nvim/lua/modules/configs/completion/
+   ├─ lsp.lua                    (Core LSP)
+   ├─ cmp.lua                    (Autocompletion)
+   ├─ mason.lua                  (Package manager)
+   ├─ formatting.lua             (Code formatting)
+   ├─ null-ls.lua                (External tools)
+   └─ servers/ (9 LSP servers)
+
+EDITOR CONFIGS
+└─ /Users/csy/.config/nvim/lua/modules/configs/editor/ (30 files)
+   ├─ treesitter.lua             (Syntax parsing)
+   ├─ flash.lua                  (Motion plugin)
+   ├─ comment.lua                (Smart commenting)
+   └─ ... (27 more editing tools)
+
+LANGUAGE CONFIGS
+└─ /Users/csy/.config/nvim/lua/modules/configs/lang/ (6 files)
+   ├─ rust.lua
+   ├─ go.lua
+   ├─ crates.lua
+   └─ render-markdown.lua
+
+TOOL CONFIGS
+└─ /Users/csy/.config/nvim/lua/modules/configs/tool/ (17 files)
+   ├─ telescope.lua              (Fuzzy finder)
+   ├─ toggleterm.lua             (Terminal)
+   ├─ dap/ (Debugger - 4 files)
+   └─ ... (13 more development tools)
+
+UI CONFIGS
+└─ /Users/csy/.config/nvim/lua/modules/configs/ui/ (11 files)
+   ├─ catppuccin.lua             (Theme)
+   ├─ lualine.lua                (Status line)
+   ├─ bufferline.lua             (Buffer tabs)
+   └─ ... (8 more UI elements)
+
+UTILITIES
+└─ /Users/csy/.config/nvim/lua/modules/utils/
+   ├─ init.lua                   (Main utilities, 397 lines)
+   ├─ icons.lua
+   ├─ keymap.lua
+   └─ dap.lua
+
+USER CUSTOMIZATION
+└─ /Users/csy/.config/nvim/lua/user/
+   ├─ keymap/ (8 files)          (User keybinding overrides)
+   ├─ plugins/ (4 files)         (User plugin specs)
+   ├─ configs/ (13 files)        (User config overrides)
+   ├─ settings.lua               (User settings override)
+   ├─ options.lua                (User options override)
+   └─ event.lua                  (User autocmds)
+
+
+QUICK STATS
+===========
+
+Total Files:           135 files
+Total Directories:     30+ directories
+Core Files:            6 files
+Keybinding Files:      8 files
+Plugin Specifications: 5 files
+Plugin Configs:        81 files
+Utility Files:         4 files
+User Customizations:   25 files
+
+Plugins by Category:
+  - Completion:   29 configs (LSP, autocompletion, formatting)
+  - Editor:       30 configs (text editing, navigation)
+  - Language:     6 configs (Rust, Go, Markdown, etc)
+  - Tools:        17 configs (search, debug, terminal, AI)
+  - UI:           11 configs (theme, statusline, icons)
+
+Total Plugins Managed: ~85+ distinct plugins
+
+
+INITIALIZATION SEQUENCE
+=======================
+
+1. init.lua (main entry point, calls require("core"))
+2. core/init.lua starts:
+   a) core/global.lua         - OS detection and paths
+   b) core/options.lua        - Editor defaults
+   c) core/event.lua          - Autocmd setup
+   d) core/pack.lua           - Plugin loading
+   e) keymap/init.lua         - Keybindings
+3. core/settings.lua applied
+4. User customizations merged (if present)
+
+
+FILE PURPOSE SUMMARY
+====================
+
+core/init.lua          Orchestrates all initialization
+core/global.lua        OS detection, path setup
+core/settings.lua      Central config repository
+core/options.lua       Neovim option defaults
+core/event.lua         Autocmd definitions
+core/pack.lua          Lazy.nvim setup
+
+keymap/init.lua        Keymap entry point
+keymap/bind.lua        Keybinding helper class (builder pattern)
+keymap/helpers.lua     Additional helpers
+keymap/{category}.lua  Category-specific keybindings
+
+modules/plugins/*.lua  Plugin specifications
+modules/configs/*/*.lua Plugin configurations
+modules/utils/init.lua Utility functions and helpers
+
+user/keymap/           Override keybindings
+user/plugins/          Add custom plugins
+user/configs/          Override plugin configs
+user/settings.lua      Override settings
+user/options.lua       Override options
+user/event.lua         Add custom events
+
+
+PRIORITY HIERARCHY FOR ADDING COMMENTS
+=======================================
+
+MUST DO FIRST (Tier 1 - 4 files, ~1.5 hours):
+1. core/global.lua               - 20 lines, 10 min
+2. core/settings.lua             - 266 lines, 20 min
+3. core/init.lua                 - 124 lines, 30 min
+4. core/pack.lua                 - 164 lines, 45 min
+
+SHOULD DO NEXT (Tier 2 - 6 files, ~3 hours):
+5. keymap/init.lua               - 51 lines, 20 min
+6. keymap/bind.lua               - 169 lines, 40 min
+7. modules/plugins/completion.lua - 95 lines, 25 min
+8. modules/plugins/editor.lua    - 146 lines, 35 min
+9. modules/utils/init.lua        - 397 lines, 60 min
+10. modules/configs/completion/lsp.lua - ?, 25 min
+
+NICE TO HAVE (Tier 3 - 5 files):
+11. modules/plugins/tool.lua
+12. modules/plugins/ui.lua
+13. modules/plugins/lang.lua
+14. modules/configs/editor/treesitter.lua
+15. modules/configs/tool/dap/init.lua
+
+
+KEY INTEGRATION POINTS
+======================
+
+How initialization flows:
+  nvim startup → init.lua → require("core") → core/init.lua → other modules
+
+How plugins are specified:
+  1. Plugin defined in modules/plugins/{category}.lua
+  2. Plugin listed in lazy.nvim array
+  3. Config file referenced via config = require("...")
+  4. Config file in modules/configs/{category}/{name}.lua
+
+How user customization works:
+  1. User file in lua/user/ mirrors lua/modules/ structure
+  2. System automatically merges user settings with defaults
+  3. No need to modify core files
+
+How keybindings are defined:
+  map_cr("command"):with_silent():with_noremap():with_desc("help text")
+  Uses builder pattern for chainable, readable syntax
+
+How utilities are shared:
+  - modules/utils/init.lua provides palette, highlights, plugin loading
+  - Functions used throughout the configuration
+  - Easy to extend for custom utilities
+
+
+CUSTOMIZATION QUICK HELP
+=========================
+
+To add a new plugin:
+  1. Edit modules/plugins/{category}.lua (add to list)
+  2. Create modules/configs/{category}/{name}.lua
+  3. Run :Lazy sync in Neovim
+
+To override a setting:
+  1. Edit user/settings.lua (define override)
+  2. Changes automatically merged with defaults
+
+To override a keybinding:
+  1. Edit user/keymap/{category}.lua
+  2. Use same map_* functions as core keybindings
+
+To disable a plugin:
+  1. Add to settings.disabled_plugins list
+  2. Run :Lazy sync
+
+To add language support:
+  1. Add LSP to core/settings.lua lsp_deps
+  2. Create user/configs/lang/{language}.lua
+  3. Add plugin spec in user/plugins/lang.lua
+
+
+EXTERNAL DEPENDENCIES
+=====================
+
+Core:
+  - lazy.nvim (auto-installed)
+  - git
+
+For fuzzy finding:
+  - fzf (optional, if using fzf-lua)
+  - ripgrep (for telescope)
+
+For formatting/linting:
+  - prettier (JavaScript)
+  - stylua (Lua)
+  - clang_format (C/C++)
+  - shfmt (Shell)
+  - goimports/gofumpt (Go)
+
+For debugging:
+  - codelldb (C/C++)
+  - delve (Go)
+  - debugpy (Python)
+
+For completions:
+  - 9 LSP servers configured in core/settings.lua
+
+
+USEFUL NEOVIM COMMANDS
+======================
+
+:Lazy                - Show lazy.nvim UI
+:Lazy sync          - Update plugins
+:Lazy clean         - Remove unused plugins
+:checkhealth        - Check setup status
+:help rtp           - Runtime path help
+
+
+TROUBLESHOOTING QUICK REFERENCE
+================================
+
+Plugin not loading:
+  - Check modules/plugins/{category}.lua for plugin definition
+  - Check lazy loading conditions (event/cmd/cond)
+  - Run :Lazy debug to see loading status
+
+Config not applied:
+  - Check modules/configs/{category}/{name}.lua exists
+  - Verify config = require("...") path is correct
+  - Check for syntax errors
+
+Keybinding not working:
+  - Check keymap/{category}.lua or user/keymap/{category}.lua
+  - Verify map syntax is correct
+  - Check for conflicting keybindings
+
+Startup time slow:
+  - Run :Lazy profile
+  - Check for large files or plugins with no lazy condition
+  - Review core/pack.lua performance settings
+
+
+DOCUMENTATION COMMENT TEMPLATE
+==============================
+
+For each file, include:
+
+1. FILE PURPOSE (top of file)
+   -- Purpose: [One line description]
+
+2. OVERALL STRUCTURE (after imports)
+   -- Structure:
+   -- [Describe major sections/functions]
+
+3. KEY FUNCTIONS (before each function)
+   -- Function: function_name()
+   -- Purpose: [What it does]
+   -- Args: [Parameters explained]
+   -- Returns: [What it returns]
+
+4. COMPLEX LOGIC (in-line for tricky code)
+   -- Why: [Explain why this approach]
+
+5. INTEGRATION (end of file comments)
+   -- Used by: [Which files use this]
+   -- Depends on: [Which files this depends on]
+   -- Customization: [How to override/extend]
+
+
+PERFORMANCE OPTIMIZATION NOTES
+===============================
+
+- Lazy.nvim caches modules (2-day TTL)
+- Plugins load on-demand by event/cmd
+- ~<50ms startup target
+- 20 concurrent downloads on macOS
+- Reset packpath for faster loading
+- Disabled rplugin by default
+
+
+PLATFORM-SPECIFIC CONFIGURATIONS
+=================================
+
+macOS:
+  - Uses pbcopy/pbpaste for clipboard
+  - 20 concurrent download threads
+  - Input method integration (Neovide)
+
+Windows:
+  - PowerShell configured for shell
+  - win32yank for clipboard via WSL
+
+WSL:
+  - Special clipboard handling
+  - Path normalization
+
+Linux:
+  - Standard Unix tools
+  - Clipboard depends on available tools
+

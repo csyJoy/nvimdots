@@ -1,5 +1,6 @@
 local tool = {}
 
+-- 代码重构工具：基于 Treesitter 的代码重构功能
 tool["ThePrimeagen/refactoring.nvim"] = {
 	event = "LspAttach",
 	dependencies = {
@@ -9,6 +10,7 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 	config = require("tool.refactoring"),
 }
 
+-- Obsidian 笔记集成：在 Neovim 中管理 Obsidian 笔记
 tool["epwalsh/obsidian.nvim"] = {
 	lazy = true,
 	cmd = {
@@ -41,6 +43,7 @@ tool["epwalsh/obsidian.nvim"] = {
 	opts = require("tool.obsidian"),
 }
 
+-- Lua 开发类型提示：为 Neovim Lua 开发提供类型提示和补全
 tool["folke/lazydev.nvim"] = {
 	ft = "lua", -- only load on lua files
 	opts = {
@@ -55,16 +58,20 @@ tool["folke/lazydev.nvim"] = {
 	},
 }
 
+-- Luvit 类型定义：Luvit 库的类型定义
 tool["Bilal2453/luvit-meta"] = {
 	lazy = true,
 }
 
+-- WezTerm 类型定义：WezTerm 终端的类型定义
 tool["justinsgithub/wezterm-types"] = {
 	lazy = true,
 }
 
+-- 智能窗口分割：智能窗口导航和大小调整（配置覆盖）
 tool["mrjones2014/smart-splits.nvim"] = {}
 
+-- Demo 插件：自定义本地插件示例（生成 Flashcards）
 tool["demo"] = {
 	cmd = "GenerateFlashcards",
 	dir = "/Users/csy/demo.nvim",
@@ -73,6 +80,7 @@ tool["demo"] = {
 	},
 }
 
+-- Copilot 聊天：GitHub Copilot 聊天界面（已禁用）
 tool["CopilotC-Nvim/CopilotChat.nvim"] = {
 	cond = false,
 	branch = "main",
@@ -87,10 +95,12 @@ tool["CopilotC-Nvim/CopilotChat.nvim"] = {
 	},
 }
 
+-- 代码片段执行：在编辑器中直接执行代码片段（已禁用）
 tool["michaelb/sniprun"] = {
 	cond = false,
 }
 
+-- DAP 虚拟文本：在调试时显示变量值的虚拟文本
 tool["theHamsta/nvim-dap-virtual-text"] = {
 	lazy = true,
 	init = function()
@@ -107,6 +117,7 @@ tool["theHamsta/nvim-dap-virtual-text"] = {
 	config = true,
 }
 
+-- SSH 远程开发：通过 SSH 进行远程 Neovim 开发（已禁用）
 tool["amitds1997/remote-nvim.nvim"] = {
 	cond = false,
 	version = "*", -- Pin to GitHub releases
@@ -155,6 +166,7 @@ tool["amitds1997/remote-nvim.nvim"] = {
 	},
 }
 
+-- Claude Code 集成：Claude Code AI 助手集成，提供快捷键操作
 tool["coder/claudecode.nvim"] = {
 	dependencies = { "folke/snacks.nvim" },
 	opts = {

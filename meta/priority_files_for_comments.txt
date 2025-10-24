@@ -1,0 +1,231 @@
+PRIORITY FILES FOR ADDING COMMENTS
+===================================
+
+These are the most critical files that benefit from comprehensive documentation.
+
+TIER 1 - ABSOLUTE MUST HAVE (Architectural Foundation)
+=======================================================
+
+1. /Users/csy/.config/nvim/lua/core/init.lua
+   Location: /Users/csy/.config/nvim/lua/core/init.lua
+   Current Lines: ~124
+   Purpose: Entry point that orchestrates entire core initialization
+   What It Does:
+     - Creates cache directories
+     - Sets leader key
+     - Loads GUI configs for Neovide/neovim-qt
+     - Configures clipboard per OS (macOS, WSL)
+     - Configures shell for Windows
+     - Loads core modules in order
+     - Sets file encodings and colorscheme
+   Why Comments Needed: New users need to understand initialization flow
+   Difficulty: Medium
+
+2. /Users/csy/.config/nvim/lua/core/pack.lua
+   Location: /Users/csy/.config/nvim/lua/core/pack.lua
+   Current Lines: ~164
+   Purpose: Lazy.nvim plugin manager setup
+   What It Does:
+     - Bootstraps lazy.nvim if not installed
+     - Loads plugin specifications from modules/plugins/*.lua
+     - Merges with user/plugins/*.lua if exists
+     - Configures lazy.nvim behavior and UI
+     - Sets up performance optimizations
+     - Handles disabled plugins and rtp cleanup
+   Why Comments Needed: Complex lazy.nvim configuration not obvious
+   Difficulty: Hard
+
+3. /Users/csy/.config/nvim/lua/core/settings.lua
+   Location: /Users/csy/.config/nvim/lua/core/settings.lua
+   Current Lines: ~266
+   Purpose: Central configuration repository for all settings
+   What It Does:
+     - Defines global behavior flags (SSH, Copilot, formatting)
+     - Lists LSP servers to install
+     - Lists formatter tools to install
+     - Lists DAP debuggers to install
+     - Lists treesitter parsers to install
+     - Defines GUI and Neovide settings
+     - Configures theme and colorscheme
+     - Integrates user overrides
+   Why Comments Needed: Users need to know what each setting controls
+   Difficulty: Low
+
+4. /Users/csy/.config/nvim/lua/core/global.lua
+   Location: /Users/csy/.config/nvim/lua/core/global.lua
+   Current Lines: ~20
+   Purpose: Global variables and environment detection
+   What It Does:
+     - Detects operating system
+     - Sets up paths (vim_path, cache_dir, data_dir, etc)
+     - Initializes home directory
+   Why Comments Needed: Path setup is critical for users on different OSes
+   Difficulty: Low
+
+
+TIER 2 - HIGHLY IMPORTANT (Core Systems)
+=========================================
+
+5. /Users/csy/.config/nvim/lua/keymap/init.lua
+   Location: /Users/csy/.config/nvim/lua/keymap/init.lua
+   Current Lines: ~51
+   Purpose: Main keybinding orchestrator
+   What It Does:
+     - Loads keymap helpers
+     - Loads keybinding helper class
+     - Defines core package manager keybindings
+     - Loads category-specific keybindings
+     - Loads user keybindings if they exist
+   Why Comments Needed: Shows how keybinding system is structured
+   Difficulty: Medium
+
+6. /Users/csy/.config/nvim/lua/keymap/bind.lua
+   Location: /Users/csy/.config/nvim/lua/keymap/bind.lua
+   Current Lines: ~169
+   Purpose: Keybinding helper class using builder pattern
+   What It Does:
+     - Defines rhs_options class with chainable methods
+     - Provides factory functions (map_cr, map_cmd, map_cu, etc)
+     - Implements nvim_load_mapping function
+     - Each method returns self for chaining
+   Why Comments Needed: Builder pattern and class structure needs explanation
+   Difficulty: Hard (requires explaining OOP in Lua)
+
+7. /Users/csy/.config/nvim/lua/modules/plugins/completion.lua
+   Location: /Users/csy/.config/nvim/lua/modules/plugins/completion.lua
+   Current Lines: ~95
+   Purpose: Plugin specifications for all LSP/completion/formatting
+   What It Does:
+     - Defines nvim-lspconfig and dependencies
+     - Defines lspsaga (enhanced LSP UI)
+     - Defines glance (definition preview)
+     - Defines none-ls (external tools)
+     - Defines nvim-cmp (autocompletion)
+     - Defines Copilot and copilot-cmp
+   Why Comments Needed: Shows how plugins are structured and dependencies
+   Difficulty: Medium
+
+8. /Users/csy/.config/nvim/lua/modules/plugins/editor.lua
+   Location: /Users/csy/.config/nvim/lua/modules/plugins/editor.lua
+   Current Lines: ~146
+   Purpose: Plugin specs for text editing, navigation, and treesitter
+   What It Does:
+     - Session management (persisted.nvim)
+     - Auto-closing brackets (autoclose.nvim)
+     - Large file optimization (faster.nvim)
+     - Enhanced jumping (flash.nvim)
+     - Commenting (Comment.nvim)
+     - Treesitter and related plugins
+   Why Comments Needed: Shows complex plugin dependencies and configurations
+   Difficulty: Hard
+
+9. /Users/csy/.config/nvim/lua/modules/utils/init.lua
+   Location: /Users/csy/.config/nvim/lua/modules/utils/init.lua
+   Current Lines: ~397
+   Purpose: Shared utility functions and helpers
+   What It Does:
+     - Palette management and color utilities
+     - Highlight group management
+     - Color blending functions
+     - Server registration
+     - Plugin loading framework
+     - Config extension system
+   Why Comments Needed: Utility functions are used throughout the config
+   Difficulty: Hard
+
+10. /Users/csy/.config/nvim/lua/modules/configs/completion/lsp.lua
+    Location: /Users/csy/.config/nvim/lua/modules/configs/completion/lsp.lua
+    Current Lines: Unknown (need to read)
+    Purpose: Core LSP configuration
+    What It Does:
+      - Sets up nvim-lspconfig
+      - Manages LSP server attachment
+      - Handles capabilities setup
+      - Manages diagnostics display
+    Why Comments Needed: LSP is central to editor functionality
+    Difficulty: Medium
+
+
+TIER 3 - IMPORTANT (Systems Understanding)
+===========================================
+
+11. /Users/csy/.config/nvim/lua/modules/plugins/tool.lua
+    Purpose: Development tools plugin specs
+    Why: Shows debugging, search, terminal plugins structure
+
+12. /Users/csy/.config/nvim/lua/modules/plugins/ui.lua
+    Purpose: UI and appearance plugin specs
+    Why: Shows UI system organization
+
+13. /Users/csy/.config/nvim/lua/modules/plugins/lang.lua
+    Purpose: Language-specific plugin specs
+    Why: Shows language support architecture
+
+14. /Users/csy/.config/nvim/lua/modules/configs/editor/treesitter.lua
+    Purpose: Treesitter syntax parsing setup
+    Why: Core to syntax highlighting
+
+15. /Users/csy/.config/nvim/lua/modules/configs/tool/dap/init.lua
+    Purpose: Debug Adapter Protocol setup
+    Why: Core debugging infrastructure
+
+
+SUMMARY TABLE
+=============
+
+Priority | File | Lines | Difficulty | Estimated Time
+---------|------|-------|------------|----------------
+Tier 1   | core/init.lua | 124 | Medium | 30 mins
+Tier 1   | core/pack.lua | 164 | Hard | 45 mins
+Tier 1   | core/settings.lua | 266 | Low | 20 mins
+Tier 1   | core/global.lua | 20 | Low | 10 mins
+Tier 2   | keymap/init.lua | 51 | Medium | 20 mins
+Tier 2   | keymap/bind.lua | 169 | Hard | 40 mins
+Tier 2   | modules/plugins/completion.lua | 95 | Medium | 25 mins
+Tier 2   | modules/plugins/editor.lua | 146 | Hard | 35 mins
+Tier 2   | modules/utils/init.lua | 397 | Hard | 60 mins
+Tier 2   | modules/configs/completion/lsp.lua | ? | Medium | 25 mins
+
+Total estimated time for Tier 1 & 2: ~4.5 hours
+
+RECOMMENDED APPROACH
+====================
+
+Start with Tier 1 (Foundation):
+1. core/global.lua (10 min) - easiest, sets the stage
+2. core/settings.lua (20 min) - understand configuration
+3. core/init.lua (30 min) - see how components connect
+4. core/pack.lua (45 min) - understand plugin loading
+
+Then Tier 2 (Systems):
+5. keymap/init.lua (20 min) - see keybinding structure
+6. keymap/bind.lua (40 min) - understand builder pattern
+7. modules/plugins/completion.lua (25 min) - see plugin specs
+8. modules/plugins/editor.lua (35 min) - more complex plugins
+9. modules/utils/init.lua (60 min) - understand utilities
+10. modules/configs/completion/lsp.lua (25 min) - LSP system
+
+COMMENT FOCUS AREAS
+===================
+
+For each file, focus on:
+1. File purpose (what role does it play)
+2. Overall architecture (how is it organized)
+3. Key functions/sections (what does each part do)
+4. Complex logic (why is it done this way)
+5. User customization points (where can users extend it)
+6. Integration points (how does it connect to other files)
+
+COMMON QUESTIONS TO ADDRESS IN COMMENTS
+========================================
+
+1. Why is this file needed?
+2. What does it depend on?
+3. What depends on it?
+4. How are users expected to customize this?
+5. What happens if settings are changed?
+6. How does this interact with plugins?
+7. What's the initialization order?
+8. Where are common errors likely to occur?
+9. How does this work across platforms?
+10. What external tools are required?
