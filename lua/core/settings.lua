@@ -22,7 +22,7 @@ settings["use_ssh"] = true
 -- Set to false if you don't use Copilot.
 -- 设置为 false 如果不使用 GitHub Copilot
 ---@type boolean
-settings["use_copilot"] = true
+settings["use_copilot"] = false
 
 -- ========== 代码格式化配置 ==========
 -- Set to false if you don't want to format on save.
