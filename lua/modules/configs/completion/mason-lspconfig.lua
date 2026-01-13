@@ -12,9 +12,6 @@
 local M = {}
 
 M.setup = function()
-	local is_windows = require("core.global").is_windows
-
-	-- 从设置中获取需要安装的 LSP 服务器列表
 	local lsp_deps = require("core.settings").lsp_deps
 	local mason_registry = require("mason-registry")
 	local mason_lspconfig = require("mason-lspconfig")
@@ -155,76 +152,6 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 	for _, pkg in ipairs(mason_registry.get_installed_package_names()) do
 		setup_lsp_for_package(pkg)
 	end
-
-	-- ========== Python LSP 服务器特殊处理 ==========
-	-- 监听 Mason 包安装成功事件
-	-- 当 python-lsp-server 安装后，自动安装额外的插件（black, ruff, rope）
-	-- 然后使用 setup_lsp_for_package 配置已安装包的 LSP
-	mason_registry:on(
-		"package:install:success",
-		vim.schedule_wrap(function(pkg)
-			if pkg.name == "python-lsp-server" then
-				-- ========== 确定 Python LSP 虚拟环境路径 ==========
-				local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
-				-- 根据操作系统确定可执行文件路径
-				local python = is_windows and venv .. "/Scripts/python.exe" or venv .. "/bin/python"
-				local black = is_windows and venv .. "/Scripts/black.exe" or venv .. "/bin/black"
-				local ruff = is_windows and venv .. "/Scripts/ruff.exe" or venv .. "/bin/ruff"
-
-				-- ========== 使用 pip 安装额外插件 ==========
-				require("plenary.job")
-					:new({
-						command = python,
-						args = {
-							"-m",
-							"pip",
-							"install",
-							"-U", -- 升级已安装的包
-							"--disable-pip-version-check", -- 禁用版本检查加快安装
-							"python-lsp-black", -- Black 格式化器集成
-							"python-lsp-ruff", -- Ruff linter 集成
-							"pylsp-rope", -- Rope 重构工具集成
-						},
-						cwd = venv,
-						env = { VIRTUAL_ENV = venv },
-						-- 安装完成回调
-						on_exit = function()
-							if vim.fn.executable(black) == 1 and vim.fn.executable(ruff) == 1 then
-								vim.notify(
-									"Finished installing pylsp plugins",
-									vim.log.levels.INFO,
-									{ title = "[lsp] Install Status" }
-								)
-							else
-								vim.notify(
-									"Failed to install pylsp plugins. [Executable not found]",
-									vim.log.levels.ERROR,
-									{ title = "[lsp] Install Failure" }
-								)
-							end
-						end,
-						-- 安装开始回调
-						on_start = function()
-							vim.notify(
-								"Now installing pylsp plugins...",
-								vim.log.levels.INFO,
-								{ title = "[lsp] Install Status", timeout = 6000 }
-							)
-						end,
-						-- 错误输出回调
-						on_stderr = function(_, msg_stream)
-							if msg_stream then
-								vim.notify(msg_stream, vim.log.levels.ERROR, { title = "[lsp] Install Failure" })
-							end
-						end,
-					})
-					:start()
-			end
-
-			-- 为新安装的包设置 LSP
-			setup_lsp_for_package(pkg)
-		end)
-	)
 end
 
 return M
